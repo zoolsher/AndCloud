@@ -1,27 +1,30 @@
 {
-  "name": "andcloud",
-  "version": "0.0.1",
-  "description": "run your app in cloud",
-  "main": "res/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zoolsher/AndCloud.git"
-  },
-  "keywords": [
-    "android"
-  ],
-  "author": "zoolsher",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zoolsher/AndCloud/issues"
-  },
-  "homepage": "https://github.com/zoolsher/AndCloud#readme",
-  "dependencies": {
-    "adbkit": "^2.4.1",
-    "bluebird": "^3.3.5",
-    "log": "^1.4.0"
-  }
+    "name": "andcloud",
+    "version": "0.0.1",
+    "description": "run your app in cloud",
+    "main": "lib/index.js",
+    "scripts": {
+        "compile": "babel res --out-dir lib",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zoolsher/AndCloud.git"
+    },
+    "keywords": [
+        "android"
+    ],
+    "author": "zoolsher",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/zoolsher/AndCloud/issues"
+    },
+    "homepage": "https://github.com/zoolsher/AndCloud#readme",
+    "dependencies": {
+        "adbkit": "^2.4.1",
+        "babel": "^6.5.2",
+        "bluebird": "^3.3.5",
+        "express": "^4.13.4",
+        "log": "^1.4.0"
+    }
 }
