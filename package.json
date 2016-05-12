@@ -1,0 +1,27 @@
+{
+  "name": "andcloud",
+  "version": "0.0.1",
+  "description": "run your app in cloud",
+  "main": "res/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoolsher/AndCloud.git"
+  },
+  "keywords": [
+    "android"
+  ],
+  "author": "zoolsher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zoolsher/AndCloud/issues"
+  },
+  "homepage": "https://github.com/zoolsher/AndCloud#readme",
+  "dependencies": {
+    "adbkit": "^2.4.1",
+    "bluebird": "^3.3.5",
+    "log": "^1.4.0"
+  }
+}
