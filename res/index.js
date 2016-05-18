@@ -1,26 +1,39 @@
-var adbkit = require('adbkit');
-var Promise = require('bluebird');
-var log = require('log');
-var fs = require('fs');
-var client = adbkit.createClient();
-var process = require('process');
+'use strict';
+var EventProxy = require('eventproxy');
 var arraydiff = require('./tools/arraydiff');
-var devicesID = [];
+var DeviceWatcher = require('./DeviceWatcher');
 
-function checker() {
-    client.listDevices().then(function(devices) {
-        arr = [];
-        for (var i = 0; i < devices.length; i++) {
-            arr.push(devices[i]['id']);
-        }
-        var res = arraydiff(devicesID, arr);
-        if (Object.getOwnPropertyNames(res).length !== 0) {
-            console.log(res);
-        }
-        devicesID = arr;
-        setTimeout(checker, 100);
-    }).catch(function(err) {
-        console.log(err);
+// var ep = new EventProxy();
+// var d = new DeviceWatcher(ep);
+// ep.on(d.EVENT_DEVICE_DIFF, function(res) {
+//     console.log('------res-------');
+//     console.log(res);
+//     console.log('------devicesList-------');
+//     console.log(d.devicesID);
+// });
+// ep.on(d.EVENT_LOOP_FINISH, function(data) {
+//     setTimeout(function() {
+//         d.checker();
+//     }, 200);
+// });
+// d.checker();
+
+
+var adb = require('adbkit')
+var client = adb.createClient()
+
+client.trackDevices()
+    .then(function(tracker) {
+        tracker.on('add', function(device) {
+            console.log('Device %s was plugged in', device.id)
+        })
+        tracker.on('remove', function(device) {
+            console.log('Device %s was unplugged', device.id)
+        })
+        tracker.on('end', function() {
+            console.log('Tracking stopped')
+        })
     })
-}
-checker();
+    .catch(function(err) {
+        console.error('Something went wrong:', err.stack)
+    })

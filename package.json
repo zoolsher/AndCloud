@@ -4,7 +4,7 @@
     "description": "run your app in cloud",
     "main": "lib/index.js",
     "scripts": {
-        "compile": "babel res --out-dir lib",
+        "compile": "babel res --out-dir lib --source-maps",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -24,6 +24,7 @@
         "adbkit": "^2.4.1",
         "babel": "^6.5.2",
         "bluebird": "^3.3.5",
+        "eventproxy": "^0.3.4",
         "express": "^4.13.4",
         "log": "^1.4.0"
     }
