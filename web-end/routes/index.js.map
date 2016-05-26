@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../web-code/routes/index.js"],"names":[],"mappings":";;AAAA,QAAQ,KAAR,GAAgB,UAAS,GAAT,EAAc,GAAd,EAAmB;AAC/B,QAAI,MAAJ,CAAW,OAAX,EAAoB;AAChB,cAAM;AADU,KAApB;AAGH,CAJD","file":"index.js","sourcesContent":["exports.index = function(req, res) {\n    res.render('index', {\n        name: \"test\"\n    });\n};"]}

@@ -18,5 +18,8 @@
     }, {
         "taskName": "compile",
         "args": ["run", "compile"]
+    }, {
+        "taskName": "compileweb",
+        "args": ["run", "compileweb"]
     }]
 }
