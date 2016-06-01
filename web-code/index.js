@@ -9,7 +9,11 @@ var client = adb.createClient();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 var options = {
-    beautify: true
+    beautify: true,
+    babel: {
+        presets: ['react', 'es2015']
+    },
+    transformViews: false
 };
 app.engine('jsx', expressReactDom.createEngine(options));
 app.get('/', require('./routes').index);

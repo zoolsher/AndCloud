@@ -1,39 +1,40 @@
 {
-    "name": "andcloud",
-    "version": "0.0.1",
-    "description": "run your app in cloud",
-    "main": "web-end/index.js",
-    "scripts": {
-        "compile": "babel --presets es2015 res --out-dir lib --source-maps,\r\n babel web-code --out-dir web-end --source-maps",
-        "compileweb": "babel web-code --out-dir web-end --source-maps",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/zoolsher/AndCloud.git"
-    },
-    "keywords": [
-        "android"
-    ],
-    "author": "zoolsher",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/zoolsher/AndCloud/issues"
-    },
-    "homepage": "https://github.com/zoolsher/AndCloud#readme",
-    "dependencies": {
-        "adbkit": "^2.4.1",
-        "babel": "^6.5.2",
-        "bluebird": "^3.3.5",
-        "eventproxy": "^0.3.4",
-        "express": "^4.13.4",
-        "log": "^1.4.0"
-    },
-    "devDependencies": {
-        "babel-preset-es2015": "^6.9.0",
-        "babel-preset-react": "^6.5.0",
-        "express-react-views": "^0.10.1",
-        "react": "^15.1.0",
-        "react-dom": "^15.1.0"
-    }
+  "name": "andcloud",
+  "version": "0.0.1",
+  "description": "run your app in cloud",
+  "main": "web-end/index.js",
+  "scripts": {
+    "compile": "babel --presets es2015 res --out-dir lib --source-maps,\r\n babel web-code --out-dir web-end --source-maps",
+    "compileweb": "babel web-code --out-dir web-end --source-maps",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoolsher/AndCloud.git"
+  },
+  "keywords": [
+    "android"
+  ],
+  "author": "zoolsher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zoolsher/AndCloud/issues"
+  },
+  "homepage": "https://github.com/zoolsher/AndCloud#readme",
+  "dependencies": {
+    "adbkit": "^2.4.1",
+    "babel": "^6.5.2",
+    "bluebird": "^3.3.5",
+    "eventproxy": "^0.3.4",
+    "express": "^4.13.4",
+    "log": "^1.4.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "express-react-views": "^0.10.1",
+    "gulp": "^3.9.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
+  }
 }
