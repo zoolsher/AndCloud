@@ -1,25 +1,26 @@
-'use strict';
+"use strict";
 
 var React = require('react');
 
 var DefaultLayout = React.createClass({
-  displayName: 'DefaultLayout',
+  displayName: "DefaultLayout",
 
   render: function render() {
     return React.createElement(
-      'html',
+      "html",
       null,
       React.createElement(
-        'head',
+        "head",
         null,
+        React.createElement("link", { rel: "stylesheet", href: "/public/public.css" }),
         React.createElement(
-          'title',
+          "title",
           null,
           this.props.title
         )
       ),
       React.createElement(
-        'body',
+        "body",
         null,
         this.props.children
       )

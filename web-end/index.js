@@ -30,16 +30,8 @@ var options = {
     },
     transformViews: false
 };
+app.use('/public', _express2.default.static(__dirname + '/public'));
 app.engine('jsx', _expressReactViews2.default.createEngine(options));
 app.get('/', require('./routes').index);
-// app.get('/devicesList', (req, res) => {
-//     client.listDevices()
-//         .then(function(devices) {
-//             res.send(JSON.stringify(devices));
-//         })
-//         .catch(function(err) {
-//             console.error('Something went wrong:', err.stack)
-//         });
-// });
 
 app.listen(3000);

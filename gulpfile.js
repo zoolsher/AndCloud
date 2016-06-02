@@ -15,4 +15,6 @@ gulp.task('default', function() {
             path.extname = ".jsx"
         }))
         .pipe(gulp.dest('web-end'));
+    gulp.src('web-code/**/*.css')
+        .pipe(gulp.dest('web-end'));
 })

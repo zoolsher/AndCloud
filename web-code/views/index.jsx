@@ -1,5 +1,6 @@
-var React = require('react');
-var DefaultLayout = require('./layouts/main.jsx');
+import React from 'react';
+import DefaultLayout from './layouts/main.jsx';
+
 
 var index = React.createClass({
   render: function() {

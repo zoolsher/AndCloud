@@ -1,16 +1,23 @@
 'use strict';
 
-var React = require('react');
-var DefaultLayout = require('./layouts/main.jsx');
+var _react = require('react');
 
-var index = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+var _main = require('./layouts/main.jsx');
+
+var _main2 = _interopRequireDefault(_main);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var index = _react2.default.createClass({
   displayName: 'index',
 
   render: function render() {
-    return React.createElement(
-      DefaultLayout,
+    return _react2.default.createElement(
+      _main2.default,
       { title: this.props.title },
-      React.createElement(
+      _react2.default.createElement(
         'div',
         null,
         'Hello ',
