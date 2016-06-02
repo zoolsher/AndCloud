@@ -43,4 +43,3 @@ app.get('/', require('./routes').index);
 // });
 
 app.listen(3000);
-//# sourceMappingURL=index.js.map

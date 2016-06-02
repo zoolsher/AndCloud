@@ -2,7 +2,7 @@
 
 exports.index = function (req, res) {
     res.render('index', {
-        name: "test"
+        name: "SafeCode",
+        title: "成功了"
     });
 };
-//# sourceMappingURL=index.js.map

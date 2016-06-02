@@ -28,4 +28,3 @@ var DefaultLayout = React.createClass({
 });
 
 module.exports = DefaultLayout;
-//# sourceMappingURL=main.js.map

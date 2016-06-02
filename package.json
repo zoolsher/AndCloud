@@ -4,7 +4,7 @@
   "description": "run your app in cloud",
   "main": "web-end/index.js",
   "scripts": {
-    "compile": "babel --presets es2015 res --out-dir lib --source-maps,\r\n babel web-code --out-dir web-end --source-maps",
+    "compile": "gulp default",
     "compileweb": "babel web-code --out-dir web-end --source-maps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -34,6 +34,8 @@
     "babel-preset-react": "^6.5.0",
     "express-react-views": "^0.10.1",
     "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-rename": "^1.2.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   }
