@@ -6,7 +6,9 @@ var index = React.createClass({
   render: function() {
     return (
       <DefaultLayout title={this.props.title}>
-        <div>Hello {this.props.name}</div>
+        <div>
+          <img src="/public/image/mi3.png" alt="手机外观图"/>
+        </div>
       </DefaultLayout>
     );
   }

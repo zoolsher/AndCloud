@@ -20,8 +20,7 @@ var index = _react2.default.createClass({
       _react2.default.createElement(
         'div',
         null,
-        'Hello ',
-        this.props.name
+        _react2.default.createElement('img', { src: '/public/image/mi3.png', alt: '手机外观图' })
       )
     );
   }

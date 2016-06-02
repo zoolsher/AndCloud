@@ -2,6 +2,10 @@ var gulp = require('gulp');
 var babel = require('gulp-babel');
 var rename = require('gulp-rename');
 gulp.task('default', function() {
+    gulp.src('web-code/**/*.css')
+        .pipe(gulp.dest('web-end'));
+    gulp.src('web-code/**/*.png')
+        .pipe(gulp.dest('web-end'));
     gulp.src('web-code/**/*.js')
         .pipe(babel({
             presets: ['es2015']
@@ -14,7 +18,5 @@ gulp.task('default', function() {
         .pipe(rename(function(path) {
             path.extname = ".jsx"
         }))
-        .pipe(gulp.dest('web-end'));
-    gulp.src('web-code/**/*.css')
         .pipe(gulp.dest('web-end'));
 })
