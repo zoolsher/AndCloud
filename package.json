@@ -35,7 +35,9 @@
     "express-react-views": "^0.10.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   }

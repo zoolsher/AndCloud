@@ -1,8 +1,1 @@
-"use strict";
-
-exports.index = function (req, res) {
-    res.render('index', {
-        name: "SafeCode",
-        title: "成功了"
-    });
-};
+"use strict";exports.index=function(e,n){n.render("index",{name:"SafeCode",title:"成功了"})};

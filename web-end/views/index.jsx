@@ -8,6 +8,10 @@ var _main = require('./layouts/main.jsx');
 
 var _main2 = _interopRequireDefault(_main);
 
+var _header = require('./Modules/header.jsx');
+
+var _header2 = _interopRequireDefault(_header);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var index = _react2.default.createClass({
@@ -17,6 +21,7 @@ var index = _react2.default.createClass({
     return _react2.default.createElement(
       _main2.default,
       { title: this.props.title },
+      _react2.default.createElement(_header2.default, null),
       _react2.default.createElement(
         'div',
         null,
