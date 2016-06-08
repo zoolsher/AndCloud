@@ -18,11 +18,6 @@ var DefaultLayout = React.createClass({
         React.createElement("meta", { name: "keywords", content: "" }),
         React.createElement("meta", { name: "viewport",
           content: "width=device-width, initial-scale=1" }),
-        React.createElement(
-          "title",
-          null,
-          "Hello Amaze UI"
-        ),
         React.createElement("meta", { name: "renderer", content: "webkit" }),
         React.createElement("meta", { "http-equiv": "Cache-Control", content: "no-siteapp" }),
         React.createElement("link", { rel: "icon", type: "image/png", href: "assets/i/favicon.png" }),
@@ -45,9 +40,11 @@ var DefaultLayout = React.createClass({
       ),
       React.createElement(
         "body",
-        null,
+        { className: "am-with-topbar-fixed-top" },
         this.props.children
-      )
+      ),
+      React.createElement("script", { src: "public/js/jquery.min.js" }),
+      React.createElement("script", { src: "public/js/amazeui.min.js" })
     );
   }
 });

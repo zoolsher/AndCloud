@@ -5,7 +5,7 @@ var plumber = require('gulp-plumber');
 var uglify = require('gulp-uglify');
 
 gulp.task('default', function() {
-    gulp.src('web-code/public/*')
+    gulp.src('web-code/public/**')
         .pipe(gulp.dest('web-end/public/'))
     gulp.src('web-code/**/*.css')
         .pipe(gulp.dest('web-end'));
