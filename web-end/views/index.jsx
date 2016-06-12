@@ -12,6 +12,14 @@ var _header = require('./Modules/header.jsx');
 
 var _header2 = _interopRequireDefault(_header);
 
+var _projectList = require('./Modules/projectList.jsx');
+
+var _projectList2 = _interopRequireDefault(_projectList);
+
+var _detail = require('./Modules/detail.jsx');
+
+var _detail2 = _interopRequireDefault(_detail);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var index = _react2.default.createClass({
@@ -29,114 +37,13 @@ var index = _react2.default.createClass({
           'div',
           { className: 'am-u-md-3' },
           _react2.default.createElement('br', null),
-          _react2.default.createElement(
-            'div',
-            { className: 'am-input-group' },
-            _react2.default.createElement('input', { type: 'text', className: 'am-form-field' }),
-            _react2.default.createElement(
-              'span',
-              { className: 'am-input-group-btn' },
-              _react2.default.createElement(
-                'button',
-                { className: 'am-btn am-btn-default', type: 'button' },
-                _react2.default.createElement('span', { className: 'am-icon-search' }),
-                ' '
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'ul',
-            { className: 'am-list am-list-border' },
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                '百度手机浏览器'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                '锤子便签'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                '锤子日历'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                '锤子邮箱'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                '手机淘宝'
-              )
-            )
-          )
+          _react2.default.createElement(_projectList2.default, { list: this.props.list })
         ),
         _react2.default.createElement(
           'div',
           { className: 'am-u-md-9' },
-          _react2.default.createElement(
-            'div',
-            { className: 'am-g am-container' },
-            _react2.default.createElement('br', null),
-            _react2.default.createElement('img', { src: '/public/image/chrome.png', alt: '', className: 'am-img-thumbnail am-u-md-2 am-u-sm-2' }),
-            _react2.default.createElement(
-              'div',
-              { className: 'am-u-md-10 am-u-sm-10' },
-              _react2.default.createElement(
-                'div',
-                null,
-                '应用名称：',
-                _react2.default.createElement(
-                  'code',
-                  null,
-                  'Chrome'
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
-                '版本号：',
-                _react2.default.createElement(
-                  'code',
-                  null,
-                  '10.0'
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: '' },
-                '大小：',
-                _react2.default.createElement(
-                  'code',
-                  null,
-                  '100MB(这么大怎么不去吃屎'
-                )
-              )
-            )
-          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(_detail2.default, { detail: this.props.curDetail }),
           _react2.default.createElement('br', null),
           _react2.default.createElement(
             'div',

@@ -19,7 +19,7 @@ var DefaultLayout = React.createClass({
         React.createElement("meta", { name: "viewport",
           content: "width=device-width, initial-scale=1" }),
         React.createElement("meta", { name: "renderer", content: "webkit" }),
-        React.createElement("meta", { "http-equiv": "Cache-Control", content: "no-siteapp" }),
+        React.createElement("meta", { httpEquiv: "Cache-Control", content: "no-siteapp" }),
         React.createElement("link", { rel: "icon", type: "image/png", href: "assets/i/favicon.png" }),
         React.createElement("meta", { name: "mobile-web-app-capable", content: "yes" }),
         React.createElement("link", { rel: "icon", sizes: "192x192", href: "assets/i/app-icon72x72@2x.png" }),
