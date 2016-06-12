@@ -2,6 +2,8 @@ exports.index = function(req, res) {
     res.render('index', {
         name: "SafeCode",
         title: "首页",
+        curPage: req.param('curPage') || 1,
+        totalPage: 20,
         list: [{
             id: 1000,
             title: "百度外卖"

@@ -12,7 +12,7 @@ var AppDetail = React.createClass({
                 <div>
                   版本号：<code>{this.props.detail.version}</code>
                 </div>
-                <div className="">
+                <div>
                   大小：<code>{this.props.detail.size}</code>
                 </div>
               </div>

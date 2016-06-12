@@ -1,4 +1,4 @@
 # AndCloud
-Run your app in our cloud in your browser even in your iPhone.
+Run your app on our cloud in your browser even on your iPhone.
 
 Based On minicap.

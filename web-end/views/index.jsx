@@ -37,7 +37,7 @@ var index = _react2.default.createClass({
           'div',
           { className: 'am-u-md-3' },
           _react2.default.createElement('br', null),
-          _react2.default.createElement(_projectList2.default, { list: this.props.list })
+          _react2.default.createElement(_projectList2.default, { list: this.props.list, curPage: this.props.curPage, totalPage: this.props.totalPage })
         ),
         _react2.default.createElement(
           'div',

@@ -1,1 +1,11 @@
 /* Write your styles */
+
+.am-util-pagination-zool>li {
+    display: inline-block;
+    border: 1px solid;
+    padding: 2px;
+}
+
+.am-util-pagination-zool-center {
+    text-align: center;
+}

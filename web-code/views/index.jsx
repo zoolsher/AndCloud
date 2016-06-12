@@ -11,7 +11,7 @@ var index = React.createClass({
         <div className="am-g">
           <div className="am-u-md-3">
             <br/>
-            <ProjectList list={this.props.list}>
+            <ProjectList list={this.props.list} curPage={this.props.curPage} totalPage={this.props.totalPage}>
             </ProjectList>
           </div>
           <div className="am-u-md-9">
