@@ -17,7 +17,7 @@ exports.index = function(req, res) {
         curDetail: {
             id: 1002,
             title: " Chrome 浏览器",
-            size: "100MB (why not eat shit?",
+            size: "100MB",
             version: "10.0(1235)",
             icon: "/public/image/chrome.png"
         }

@@ -1,11 +1,31 @@
 /* Write your styles */
 
+
+/**
+*  @auther: zoolsher
+*  @name : pagination
+*/
+
 .am-util-pagination-zool>li {
     display: inline-block;
     border: 1px solid;
     padding: 2px;
 }
 
+.am-util-pagination-zool>li>a {
+    float: left;
+}
+
+.am-util-pagination-zool {
+    word-spacing: -6px;
+}
+
 .am-util-pagination-zool-center {
     text-align: center;
+    padding-left: 0px;
 }
+
+
+/**
+*   end of pagination
+*/

@@ -77,7 +77,7 @@ var index = _react2.default.createClass({
                 'li',
                 null,
                 _react2.default.createElement('i', { className: 'am-icon-keyboard-o am-icon-fw' }),
-                '  手动化流程检测',
+                '  手动化检测流程',
                 _react2.default.createElement(
                   'span',
                   { className: 'am-badge' },

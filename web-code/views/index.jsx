@@ -37,7 +37,7 @@ var index = React.createClass({
                   </span>
                 </li>
                 <li><i className="am-icon-keyboard-o am-icon-fw"></i>&nbsp;
-                  手动化流程检测
+                  手动化检测流程
                   <span className="am-badge">
                     <i className="am-icon-spinner am-icon-pulse"></i>
                   </span>
