@@ -1,11 +1,11 @@
 import React from 'react';
-
+import AppInfo from './AppInfo';
 const RightPanel  = React.createClass({
 
 	render(){
-		var id = this.props.params.appid;
+		var app = this.props.td[this.props.params.appid];
 		return(
-			<div>{id}</div>
+			<AppInfo app={app}></AppInfo>
 		);
 	}
 })
