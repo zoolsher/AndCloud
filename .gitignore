@@ -1,4 +1,10 @@
-node_modules/.npminstall
+node_modules/
 .vscode
 rethinkdb_data
 web-end
+dist/
+.DS_Store
+bundle.js
+*.log
+course.md
+video-notes/
