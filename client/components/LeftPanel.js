@@ -8,6 +8,16 @@ const LeftPanel  = React.createClass({
 		var curPage = this.props.params.page;
 		return(
 			<div>
+				新建
+				<hr/>
+				<div className="am-input-group  am-form-file">
+					<button type="button" className="am-btn am-btn-default am-btn-sm">
+					<i className="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+					<input type="file" multiple/>
+				</div>
+				<br/>
+				历史
+				<hr/>
                 <div className="am-input-group">
                     <input type="text" className="am-form-field" />
                     <span className="am-input-group-btn">
