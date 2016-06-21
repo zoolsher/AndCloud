@@ -6,7 +6,7 @@ for(var i = 0;i<100;i++){
 		version:10+i,
 		icon:"/public/image/chrome.png",
 		size:10+i+"MB",
-		uploadTime:"一天前"
+		uploadTime:i+"天前"
 	});
 }
 

@@ -15,6 +15,9 @@ var AppInfo = React.createClass({
 				<div>
 				  大小：<code>{this.props.app['size']}</code>
 				</div>
+				<div>
+				  上传时间:<code>{this.props.app['uploadTime']}</code>
+				</div>
 			  </div>
 			</div>
 		);

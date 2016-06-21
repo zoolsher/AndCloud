@@ -29,3 +29,7 @@
 /**
 *   end of pagination
 */
+*
+.am-list .am-badge{
+    float: right;
+}

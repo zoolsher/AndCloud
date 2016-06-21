@@ -14,7 +14,7 @@ const LeftPanel  = React.createClass({
                         <button className="am-btn am-btn-default" type="button"><span className="am-icon-search"></span></button>
                     </span>
                 </div>
-                <ul className="am-list am-list-border am-list-striped am-list-static">
+                <ul className="am-list am-list-border am-list-striped">
                     {
                         this.props.td.filter((proj,index)=>{
 							if(index>=(curPage-1)*pageSize&&index<curPage*pageSize){
@@ -25,8 +25,12 @@ const LeftPanel  = React.createClass({
 						}).map((proj) => {
                             return (
                                 <li key={proj.id}>
+
+									<Link to={`/page/${curPage}/app/${proj.id}`}>
+
+									{proj.title}
 									<span className="am-badge am-badge-success">{proj.uploadTime}</span>
-									<Link to={`/page/${curPage}/app/${proj.id}`}>{proj.title}</Link>
+									</Link>
 								</li>
                             );
                         })
