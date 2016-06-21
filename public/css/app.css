@@ -33,3 +33,10 @@
 .am-list .am-badge{
     float: right;
 }
+
+.am-create-proj{
+    width: 100%;
+}
+.am-create-proj>button{
+    width: 100%;
+}
