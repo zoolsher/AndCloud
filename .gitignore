@@ -8,3 +8,5 @@ bundle.js
 *.log
 course.md
 video-notes/
+*.DS_Store
+.idea

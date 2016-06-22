@@ -6,7 +6,8 @@ const NoMatch = React.createClass({
 			<div>
 				<Header></Header>
 				<div className="am-g">
-					<img className="am-img-responsive am-img-thumbnail am-u-md-6" src="/public/image/notfound.jpg" alt=""/>
+					<div className="am-zo-box-title"></div>
+					<div className="am-zo-box-body"></div>
 				</div>
 			</div>
 		);
