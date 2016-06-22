@@ -23,7 +23,26 @@ const CreateProject = React.createClass({
 		}
 	},
 	showModel(fileList){
-
+		alert();
+		this.refs.fileNumber.innerHTML = fileList.length;
+		this.refs.showName.innerHTML = fileList.reduce((str,file)=>str+=`<code>${file.name}</code>`,'');
+		$("#my-prompt").modal({
+			relatedTarget: this,
+			onConfirm: function(e) {
+				alert('你输入的是：' + e.data || '');
+			},
+			onCancel: function(e) {
+				this.clearFile();
+			}
+		});
+	},
+	clearFile(){
+		var file = this.refs.file;
+		if (file.outerHTML) {
+			file.outerHTML = file.outerHTML;
+		} else { // FF(包括3.5)
+			file.value = "";
+		}
 	},
 	renderAlert(){
 		return(
@@ -40,7 +59,25 @@ const CreateProject = React.createClass({
 			</div>
 		);
 	},
-
+	renderModel(){
+		return(
+			<div className="am-modal am-modal-prompt" tabIndex="-1" id="my-prompt">
+			  <div className="am-modal-dialog">
+			    <div className="am-modal-hd">输入工程名</div>
+				<div className="am-modal-hd">你选择了以下<code ref="fileNumber">x</code>个文件</div>
+				<span ref="showName">
+				</span>
+			    <div className="am-modal-bd">
+			      <input type="text" className="am-modal-prompt-input" />
+			    </div>
+			    <div className="am-modal-footer">
+			      <span className="am-modal-btn" data-am-modal-cancel>取消</span>
+			      <span className="am-modal-btn" data-am-modal-confirm>提交</span>
+			    </div>
+			  </div>
+			</div>
+		);
+	},
 	render(){
 		return(
 			<div>
@@ -48,10 +85,10 @@ const CreateProject = React.createClass({
 				<div className="am-input-group  am-form-file am-create-proj">
 					<button type="button" className="am-btn am-btn-default am-btn-sm">
 					<i className="am-icon-cloud-upload"></i> 选择要上传的文件</button>
-					<input type="file" onChange={this.handleSelect} multiple/>
+					<input ref="file" type="file" onChange={this.handleSelect} multiple/>
 				</div>
 				{this.renderAlert()}
-				
+				{this.renderModel()}
 			</div>
 		);
 	}
