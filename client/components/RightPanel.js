@@ -1,11 +1,19 @@
 import React from 'react';
 import AppInfo from './AppInfo';
+import Action from './Action';
 const RightPanel  = React.createClass({
 
 	render(){
 		var app = this.props.td[this.props.params.appid];
 		return(
-			<AppInfo app={app}></AppInfo>
+			<div>
+				<AppInfo app={app}>
+				</AppInfo>
+				<hr/>
+				<Action>
+					
+				</Action>
+			</div>
 		);
 	}
 })
