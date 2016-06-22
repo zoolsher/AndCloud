@@ -23,7 +23,6 @@ const CreateProject = React.createClass({
 		}
 	},
 	showModel(fileList){
-		alert();
 		this.refs.fileNumber.innerHTML = fileList.length;
 		this.refs.showName.innerHTML = fileList.reduce((str,file)=>str+=`<code>${file.name}</code>`,'');
 		$("#my-prompt").modal({

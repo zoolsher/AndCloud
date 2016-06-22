@@ -37,4 +37,4 @@ const LeftPanel  = React.createClass({
 	}
 })
 
-module.exports = LeftPanel;
+export default LeftPanel;
