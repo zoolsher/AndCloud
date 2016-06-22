@@ -25,7 +25,7 @@ const LeftPanel  = React.createClass({
 		return(
 			<div>
 				{this.renderPopUp()}
-				新建 <span className="am-badge am-round am-fr" data-am-modal={`{target:'#${this.POP_UP_ID}'}`}>i</span>
+				新建 <a className="am-badge am-round am-fr" data-am-modal={`{target:'#${this.POP_UP_ID}'}`}><span >i</span></a>
 				<hr/>
 					<CreateProject></CreateProject>
 				<br/>
