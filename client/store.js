@@ -10,7 +10,8 @@ import td from './data/td';
 const defaultState = {
     posts:posts,
     comments:comments,
-    td:td
+    td:td,
+    searchText:""// default from empty search
 };
 
 const store = createStore(rootReducer,defaultState);

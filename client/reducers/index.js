@@ -14,8 +14,9 @@ import { routerReducer } from 'react-router-redux'; // we need this for react-ro
 import posts from './posts';
 import comments from './comments';
 import td from './td';
+import searchText from './searchText';
 
 // Combine all our reducers togeher
-const rootReducer = combineReducers({ posts, comments, td, routing: routerReducer });
+const rootReducer = combineReducers({ searchText, posts, comments, td, routing: routerReducer });
 
 export default rootReducer;

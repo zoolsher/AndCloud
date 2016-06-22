@@ -1,4 +1,4 @@
-import {INCREMENT_LIKES,ADD_COMMENT,REMOVE_COMMENT} from './actionTypes';
+import {INCREMENT_LIKES,ADD_COMMENT,REMOVE_COMMENT,SEARCH_CHANGE} from './actionTypes';
 //increment
 export function increment(index){
     return {
@@ -26,6 +26,12 @@ export function removeComment(postId , i){
     }
 }
 
+export function searchChange(searchText){
+    return{
+        type:SEARCH_CHANGE,
+        searchText
+    }
+}
 // /**
 //   Action Creators
 //

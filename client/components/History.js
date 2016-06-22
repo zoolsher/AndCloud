@@ -2,6 +2,9 @@ import React from 'react';
 import {Link} from 'react-router';
 
 const History = React.createClass({
+	handleSearch(e){
+		this.props.searchChange(e.target.value);
+	},
 	render(){
 		const pageSize = 10;
 		var totalPage = Math.ceil(this.props.td.length/pageSize)-1;
@@ -9,7 +12,7 @@ const History = React.createClass({
 		return (
 			<div>
 			<div className="am-input-group">
-				<input type="text" className="am-form-field" />
+				<input type="text" className="am-form-field" onChange={this.handleSearch} />
 				<span className="am-input-group-btn">
 					<button className="am-btn am-btn-default" type="button"><span className="am-icon-search"></span></button>
 				</span>
@@ -17,6 +20,8 @@ const History = React.createClass({
 			<ul className="am-list am-list-border am-list-striped">
 				{
 					this.props.td.filter((proj,index)=>{
+						return proj.title.toLowerCase().indexOf(this.props.searchText.toLowerCase()||'')>=0;
+					}).filter((proj,index)=>{
 						if(index>=(curPage-1)*pageSize&&index<curPage*pageSize){
 							return true;
 						}else{
