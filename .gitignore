@@ -10,3 +10,4 @@ course.md
 video-notes/
 *.DS_Store
 .idea
+npm-debug.log

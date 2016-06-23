@@ -5,7 +5,9 @@ var AppInfo = React.createClass({
 		var app = this.props.app;
 		return(
 			<div className="am-g am-container">
-			  <img src={app['icon']} alt="" className="am-img-thumbnail am-u-md-2 am-u-sm-2" />
+
+			  <img src={app['icon']} alt="" className="am-img-thumbnail am-u-md-2 am-u-sm-2 zo-box-shadow" />
+
 			  <div className="am-u-md-10 am-u-sm-10">
 				<div>
 				  应用名称：<code>{app['title']}</code>
