@@ -3,12 +3,17 @@ var webpack = require('webpack');
 console.log('using production');
 module.exports = {
   devtool: 'source-map',
-  entry: [
-    './client/index'
-  ],
+  entry: {
+    desktop:[
+        './client/index'
+    ],
+    mobile:[
+        './client-mobile/index'
+    ]
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     publicPath: '/static/'
   },
   plugins: [

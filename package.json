@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run build:webpack",
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
-    "startpro" :"npm run build &&NODE_ENV=production node index.js",
+    "startpro": "npm run build &&NODE_ENV=production node index.js",
     "start": "NODE_ENV=development node index.js"
   },
   "author": "zoolsher",
@@ -42,6 +42,7 @@
     "redux": "^3.3.1",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
     "stylus-loader": "^2.1.1",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",
