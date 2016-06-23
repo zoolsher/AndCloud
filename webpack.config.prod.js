@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-
+console.log('using production');
 module.exports = {
   devtool: 'source-map',
   entry: [
@@ -15,7 +15,8 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': "'production'"
+        'NODE_ENV': "'production'",
+        'BABEL_ENV':"'production'"
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

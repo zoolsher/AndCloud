@@ -11,12 +11,11 @@ const RightPanel  = React.createClass({
 				</AppInfo>
 				<hr/>
 				<Action>
-					
 				</Action>
 			</div>
 		);
 	}
-})
+});
 
 export default RightPanel;
 
