@@ -36,6 +36,7 @@
 
 .am-create-proj{
     width: 100%;
+    box-shadow: 1px 2px 4px 0px gray;
 }
 .am-create-proj>button{
     width: 100%;
@@ -45,4 +46,8 @@
     -webkit-box-shadow: 6px 6px 7px -7px rgba(0,0,0,0.63);
     -moz-box-shadow: 6px 6px 7px -7px rgba(0,0,0,0.63);
     box-shadow: 6px 6px 7px -7px rgba(0,0,0,0.63);
+}
+
+.am-topbar-collapse{
+    box-shadow: 0px 3px 8px 0px gray;
 }

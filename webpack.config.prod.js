@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 console.log('using production');
 module.exports = {
-  devtool: 'source-map',
   entry: {
     desktop:[
         './client/index'

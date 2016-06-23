@@ -11,7 +11,7 @@ import NoAppSelect from './components/NoAppSelect';
 const router = (
 	<Provider store={store}>
 	    <Router history={history}>
-	        <Route path="/">
+	        <Route path="/m/">
 				<IndexRedirect to="page/1"></IndexRedirect>
 				<Route path="page/:page" component={App}>
 					<IndexRoute component={NoAppSelect}></IndexRoute>

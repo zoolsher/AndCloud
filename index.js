@@ -21,10 +21,17 @@ if(process.env.NODE_ENV === "production"){
 
 
 app.use('/public',express.static(path.join(__dirname,'public')));
+app.use('/touch',express.static(path.join(__dirname,'node_modules','amazeui-touch','dist')));
+
+app.get('/m/*',function(req,res){
+    res.sendFile(path.join(__dirname,'index-mobile.html'));
+})
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+
 
 app.listen(configData.server.PORT, configData.server.IP, function(err) {
   if (err) {

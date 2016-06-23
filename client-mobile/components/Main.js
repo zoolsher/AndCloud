@@ -3,12 +3,30 @@ import { Link,Router,Route,IndexRoute,browserHistory } from 'react-router';
 import LeftPanel from './LeftPanel';
 import Header from './Header';
 import RightPanel from './RightPanel';
+import Test from './Test';
+import {NavBar} from 'amazeui-touch';
+
+const clickHandler = (item, e) => {
+  e.preventDefault();
+  alert(item);
+};
+const itemLeft = {
+  href: '#',
+  title: 'Left'
+};
+
+const dataLeft = {
+  title: 'AndCloud',
+  leftNav: [{...itemLeft, icon: 'left-nav'}],
+  onAction: clickHandler,
+};
 
 const Main = React.createClass({
   render(){
     return (
         <div>
-            <Header></Header>
+            <NavBar {...dataLeft} rightNav={[{icon: 'bars'}]} amStyle="primary"/>
+            {/*<Header></Header>
             <div className="am-g">
               <div className="am-u-md-3">
                 <br/>
@@ -19,6 +37,7 @@ const Main = React.createClass({
                 { React.cloneElement(this.props.children,this.props) }
               </div>
             </div>
+            */}
         </div>
       );
   }
