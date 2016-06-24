@@ -11,7 +11,8 @@ const defaultState = {
     posts:posts,
     comments:comments,
     td:td,
-    searchText:""// default from empty search
+    searchText:"",// default from empty search
+    startLoading:true
 };
 
 const store = createStore(rootReducer,defaultState);

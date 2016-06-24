@@ -1,4 +1,4 @@
-import {INCREMENT_LIKES,ADD_COMMENT,REMOVE_COMMENT,SEARCH_CHANGE} from './actionTypes';
+import {INCREMENT_LIKES,ADD_COMMENT,REMOVE_COMMENT,SEARCH_CHANGE,START_LOADING_FINISH} from './actionTypes';
 //increment
 export function increment(index){
     return {
@@ -30,6 +30,12 @@ export function searchChange(searchText){
     return{
         type:SEARCH_CHANGE,
         searchText
+    }
+}
+
+export function startLoadingFinish(){
+    return{
+        type:START_LOADING_FINISH,
     }
 }
 // /**

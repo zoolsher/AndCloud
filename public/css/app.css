@@ -51,3 +51,26 @@
 .am-topbar-collapse{
     box-shadow: 0px 3px 8px 0px gray;
 }
+
+/**
+ * zo-cover
+ */
+.zo-cover{
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 9999;
+    height: 100vh;
+    background-color: rgba(48, 78, 66, 0.81);
+}
+.zo-blur{
+    -webkit-filter: grayscale(100%); /* Chrome, Opera */
+       -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+            filter: grayscale(100%);
+
+    /*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false); /* IE6~IE9 */
+}
+/**
+ * end-zo-cover
+ */

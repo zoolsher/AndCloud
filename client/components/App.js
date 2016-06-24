@@ -9,7 +9,8 @@ function mapStateToProps(state) {
         posts : state.posts,
         comments : state.comments,
         td: state.td,
-        searchText: state.searchText
+        searchText: state.searchText,
+        startLoading: state.startLoading
     }
 }
 

@@ -15,8 +15,9 @@ import posts from './posts';
 import comments from './comments';
 import td from './td';
 import searchText from './searchText';
+import startLoading from './startLoading';
 
 // Combine all our reducers togeher
-const rootReducer = combineReducers({ searchText, posts, comments, td, routing: routerReducer });
+const rootReducer = combineReducers({ searchText, posts, comments, td, startLoading, routing: routerReducer});
 
 export default rootReducer;
