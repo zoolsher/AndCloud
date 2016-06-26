@@ -9,7 +9,8 @@
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
     "startpro": "npm run build &&NODE_ENV=production node index.js",
-    "start": "NODE_ENV=development node index.js"
+    "start": "NODE_ENV=development node index.js",
+    "startWin" : "SET NODE_ENV=development node index.js"
   },
   "author": "zoolsher",
   "license": "MIT",
