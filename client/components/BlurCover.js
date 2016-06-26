@@ -5,7 +5,6 @@ const BlurCover = React.createClass({
 		this.props.startLoadingFinish();
 	},
 	render(){
-
 		var loadingFull = {width:"100%"};
 		var processBarStyle={height:"2.2rem",top:"50%",position:"fixed",width:"60%",left:"20%"};
 		if(this.props.startLoading){
