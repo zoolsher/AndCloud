@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store, {history} from './store';
 import RightPanel from './components/RightPanel';
 import NoAppSelect from './components/NoAppSelect';
+import Login from './components/Login';
 
 const router = (
 	<Provider store={store}>
@@ -16,6 +17,10 @@ const router = (
 				<Route path="page/:page" component={App}>
 					<IndexRoute component={NoAppSelect}></IndexRoute>
 					<Route path="app/:appid" component={RightPanel}></Route>
+				</Route>
+				<Route path="user" component={App}>
+					<IndexRedirect to="login"></IndexRedirect>
+					<Route path="login" component={Login}></Route>
 				</Route>
 	        </Route>
 			<Route path="*" component={NoMatch}></Route>

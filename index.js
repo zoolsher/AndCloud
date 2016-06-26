@@ -20,7 +20,7 @@ if(process.env.NODE_ENV === "production"){
 }
 
 var userRouter = require('./server-controllers/user/index');
-app.use('/user',userRouter);
+// app.use('/user',userRouter);
 app.use('/public',express.static(path.join(__dirname,'public')));
 app.use('/touch',express.static(path.join(__dirname,'node_modules','amazeui-touch','dist')));
 

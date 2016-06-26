@@ -1,4 +1,4 @@
-import {INCREMENT_LIKES,ADD_COMMENT,REMOVE_COMMENT,SEARCH_CHANGE,START_LOADING_FINISH} from './actionTypes';
+import {INCREMENT_LIKES,ADD_COMMENT,REMOVE_COMMENT,SEARCH_CHANGE,START_LOADING_FINISH,START_LOGGING} from './actionTypes';
 //increment
 export function increment(index){
     return {
@@ -37,6 +37,14 @@ export function startLoadingFinish(){
     return{
         type:START_LOADING_FINISH,
     }
+}
+
+export function startLogging(username,password){
+  return{
+      type:START_LOGGING,
+      username,
+      password
+  }
 }
 // /**
 //   Action Creators

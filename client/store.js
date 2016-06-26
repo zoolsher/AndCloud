@@ -12,7 +12,12 @@ const defaultState = {
     comments:comments,
     td:td,
     searchText:"",// default from empty search
-    startLoading:true
+    startLoading:true,
+    login:{
+      state:"NOT_LOGIN",
+      username:null,
+      password:null
+    }
 };
 
 const store = createStore(rootReducer,defaultState);
