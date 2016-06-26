@@ -3,7 +3,7 @@ import React from 'react';
 var Login = React.createClass({
 	checkPassword(){
 		console.log('qwe');
-		var pw=this.refs.password.value;
+		var pw=this.refs.password.value.trim();
 		if(pw.length<4) return;
 	},
 	submitInfo(e){
