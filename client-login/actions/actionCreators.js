@@ -1,44 +1,12 @@
-import {INCREMENT_LIKES,ADD_COMMENT,REMOVE_COMMENT,SEARCH_CHANGE,START_LOADING_FINISH} from './actionTypes';
-//increment
-export function increment(index){
-    return {
-        type:INCREMENT_LIKES,
-        index
-    }
-}
+import {START_LOGGING} from './actionTypes';
 
-// add Comments
-export function addComment(postId,author,comment){
-    return {
-        type:ADD_COMMENT,
-        postId,
-        author,
-        comment
-    }
+export function startLogging(username,password){
+  return{
+      type:START_LOGGING,
+      username,
+      password
+  }
 }
-
-// remove comments
-export function removeComment(postId , i){
-    return {
-        type:REMOVE_COMMENT,
-        i,
-        postId
-    }
-}
-
-export function searchChange(searchText){
-    return{
-        type:SEARCH_CHANGE,
-        searchText
-    }
-}
-
-export function startLoadingFinish(){
-    return{
-        type:START_LOADING_FINISH,
-    }
-}
-
 // /**
 //   Action Creators
 //

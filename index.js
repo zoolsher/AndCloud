@@ -28,6 +28,10 @@ app.get('/m/*',function(req,res){
     res.sendFile(path.join(__dirname,'index-mobile.html'));
 })
 
+app.get('/user/login/',function(req,res){
+    res.sendFile(path.join(__dirname,'login.html'));
+});
+
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });

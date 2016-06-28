@@ -17,7 +17,7 @@ const Header = React.createClass({
 						<div className="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
 							<button className="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>登录 <span className="am-icon-caret-down"></span></button>
 							<ul className="am-dropdown-content">
-								<li><Link to={"/user/login"}>注册</Link></li>
+								<li><a href="/user/login">注册</a></li>
 								<li><a href="#">随便看看</a></li>
 							</ul>
 						</div>

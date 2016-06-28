@@ -8,6 +8,10 @@ module.exports = {
     ],
     mobile:[
         './client-mobile/index'
+    ],
+    login:[
+        'webpack-hot-middleware/client',
+        './client-login/index'
     ]
   },
   output: {

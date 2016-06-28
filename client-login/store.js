@@ -8,11 +8,11 @@ import posts from './data/posts';
 import td from './data/td';
 
 const defaultState = {
-    posts:posts,
-    comments:comments,
-    td:td,
-    searchText:"",// default from empty search
-    startLoading:true
+    login:{
+      state:"NOT_LOGIN",
+      username:null,
+      password:null
+    }
 };
 
 const store = createStore(rootReducer,defaultState);
