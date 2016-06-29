@@ -5,6 +5,7 @@
 	},
   	"db":{
 		"IP":"127.0.0.1",
-		"PORT":"27071"
+		"PORT":"27071",
+		"url":"mongodb://localhost:27017/ANDCLOUD_SESSION"
 	}
 }
