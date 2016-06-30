@@ -24,6 +24,13 @@ function routerConnectDB(db) {
     });
   });
 
+
+  router.get('/logout',function(req,res){
+    console.log(req.query);
+    delete req.session.user;
+    req.session.isLogin = false;
+    res.send({logout:"success"});
+  });
   return router;
 }
 
