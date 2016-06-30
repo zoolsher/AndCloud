@@ -31,13 +31,8 @@ function User(db) {
         var res = db.collection('users').find({ name: name });
         res.each(function (err, doc) {
             if (err) throw err;
-            if (doc != null) {
-                 callback(true);
-                 return false;
-            } else {
-                 callback(false);
-                 return false;
-            }
+            callback(doc!==null);
+            return false;
         });
     }
     function register(name, pass, callback) {
