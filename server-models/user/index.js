@@ -27,8 +27,28 @@ function User(db) {
             }
         })
     }
+    function checkUserExists(name, callback) {
+        var res = db.collection('users').find({ name: name });
+        res.each(function (err, doc) {
+            if (err) throw err;
+            if (doc != null) {
+                 callback(true);
+                 return false;
+            } else {
+                 callback(false);
+                 return false;
+            }
+        });
+    }
+    function register(name, pass, callback) {
+        this.checkUserExists(name, function (res) {
+            return callback(res);
+        });
+    }
     return {
-        login: login
+        login: login,
+        checkUserExists: checkUserExists,
+        register: register
     }
 }
 
