@@ -11,7 +11,8 @@ function mapStateToProps(state) {
         td: state.td,
         searchText: state.searchText,
         startLoading: state.startLoading,
-        login:state.login
+        login:state.login,
+        userInfo:state.userInfo
     }
 }
 

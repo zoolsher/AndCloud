@@ -29,7 +29,7 @@ app.use(session({
     store: new MongoStore({
         url: configData.db.url
     }),
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 24*60*60*1000 }
 }));
 
     app.use('/public', express.static(path.join(__dirname, 'public')));

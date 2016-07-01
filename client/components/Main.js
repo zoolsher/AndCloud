@@ -13,7 +13,7 @@ const Main = React.createClass({
         <BlurCover {...this.props}></BlurCover>
 
         <div className={className}>
-            <Header></Header>
+            <Header {...this.props}></Header>
 
             <div className="am-g">
               <div className="am-u-md-3">

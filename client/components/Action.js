@@ -4,7 +4,7 @@ const Action = React.createClass({
 	render(){
 		return(
 			<div>
-				action;安师asdf
+				Take Action
 			</div>
 		);
 	}

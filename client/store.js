@@ -12,7 +12,10 @@ const defaultState = {
     comments:comments,
     td:td,
     searchText:"",// default from empty search
-    startLoading:true
+    startLoading:true,
+    userInfo:{
+        name:'test'
+    }
 };
 
 const store = createStore(rootReducer,defaultState);
