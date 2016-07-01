@@ -26,11 +26,11 @@ function routerConnectDB(db) {
       };
       if (user === null) {
         req.session.isLogin = false;
-        res.send({ login: "failed" });
+        res.send(JSON.stringify({ login: "failed" }));
       } else {
         req.session.isLogin = true;
         req.session.user = user;
-        res.send({ login: "success" });
+        res.send(JSON.stringify({ login: "success" }));
       }
       return false;
     });

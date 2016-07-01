@@ -32,17 +32,27 @@ app.use(session({
     cookie: { maxAge: 60000 }
 }));
 
+    app.use('/public', express.static(path.join(__dirname, 'public')));
+    app.use('/touch', express.static(path.join(__dirname, 'node_modules', 'amazeui-touch', 'dist')));
+
 
 MongoClient.connect(configData.db.url, function (err, database) {
     if (err) {
         throw err;
     }
     db = database;
-    var userRouter = require('./server-controllers/user/index')(db);
-    app.use('/s/', userRouter);
 
-    app.use('/public', express.static(path.join(__dirname, 'public')));
-    app.use('/touch', express.static(path.join(__dirname, 'node_modules', 'amazeui-touch', 'dist')));
+    app.use(function(req,res,next){
+        if(req.session.isLogin===true || req.path.startsWith('/user/login') || req.path.startsWith('/s/user')){
+            next();
+        }else{
+            res.redirect('/user/login');
+        }
+    });
+
+    var userRouter = require('./server-controllers/user/index')(db);
+    app.use('/s/user', userRouter);
+
 
     app.get('/m/*', function (req, res) {
         res.sendFile(path.join(__dirname, 'index-mobile.html'));
@@ -53,6 +63,7 @@ MongoClient.connect(configData.db.url, function (err, database) {
     });
 
     app.get('*', function (req, res) {
+        
         res.sendFile(path.join(__dirname, 'index.html'));
     });
     app.listen(configData.server.PORT, configData.server.IP, function (err) {

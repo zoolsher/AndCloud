@@ -1,16 +1,21 @@
-import { START_LOGGING } from './../actions/actionTypes';
+import { START_LOGGING,LOGIN_SUCCESS } from './../actions/actionTypes';
 
 function login (state = {}, action){
     switch (action.type) {
         case START_LOGGING:
-            //fa le g3 qq
             var newstate = {
               state:"LOGGING_IN",
               username:action.username,
               password:action.password
             }
             return newstate;
-            break;
+        case LOGIN_SUCCESS:
+            var newstate = {
+                state:"LOGIN_SUCCESS",
+                username:state.username,
+                password:state.password
+            }
+            return newstate;
         default:
             return state;
     }

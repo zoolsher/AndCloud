@@ -1,4 +1,4 @@
-import {START_LOGGING} from './actionTypes';
+import {START_LOGGING,LOGIN_SUCCESS} from './actionTypes';
 
 export function startLogging(username,password){
   return{
@@ -6,6 +6,12 @@ export function startLogging(username,password){
       username,
       password
   }
+}
+
+export function loginSuccess(){
+  return {
+    type: LOGIN_SUCCESS
+  };
 }
 // /**
 //   Action Creators
