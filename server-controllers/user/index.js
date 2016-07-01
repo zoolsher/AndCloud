@@ -12,18 +12,19 @@ function routerConnectDB(db) {
   router.get('/register', function (req, res) {
     var name = req.query.name;
     var pass = req.query.pass;
-    User(db).register(name, pass, function (resss) {
-      console.log('resss get called '+resss);
-      res.send({h:resss+''});
+    User(db).register(name, pass, function (ret) {
+      
+      res.send(JSON.stringify(ret.state));
       
     });
   });
 
   router.get('/login', function (req, res) {
-    console.log(req.query);
     User(db).login(req.query.name, req.query.pass, function (err, user) {
-      if (err) throw err;
-      if (user === false) {
+      if (err) {
+        throw err;
+      };
+      if (user === null) {
         req.session.isLogin = false;
         res.send({ login: "failed" });
       } else {
@@ -31,6 +32,7 @@ function routerConnectDB(db) {
         req.session.user = user;
         res.send({ login: "success" });
       }
+      return false;
     });
   });
 
