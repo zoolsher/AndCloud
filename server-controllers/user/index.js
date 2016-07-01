@@ -36,6 +36,11 @@ function routerConnectDB(db) {
     });
   });
 
+  router.get('/existSameUser',function(req,res){
+    User(db).checkUserExists(req.query.name,function(ret){
+      res.send(ret);
+    });
+  });
 
   router.get('/logout', function (req, res) {
     console.log(req.query);

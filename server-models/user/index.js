@@ -40,7 +40,6 @@ function User(db) {
                 ret.state.fixSuggestion = "change-user-name";
                 return callback(ret);
             } else {
-                console.log(passwordHash(pass));
                 var cur = db.collection('users').insertOne({
                     name: name,
                     pass: passwordHash(pass),
