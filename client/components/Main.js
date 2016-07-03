@@ -7,7 +7,7 @@ import BlurCover from './BlurCover';
 
 const Main = React.createClass({
   componentDidUpdate() {
-    this.state.startLoading = false;
+    // this.state.startLoading = false;
   },
   getInitialState() {
     var comp = this;
@@ -26,7 +26,12 @@ const Main = React.createClass({
         url: "/s/project/projectList",
         method: "GET",
       }).success(function (data) {
-        comp.state.startLoading = false;
+        window.setTimeout(function(){
+          comp.setState({
+            startLoading : false
+          })
+        },1000);
+        
         comp.props.projectListLoadingSuccess(JSON.parse(data));
       });
     });
