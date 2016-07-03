@@ -1,33 +1,62 @@
 import React from 'react';
-import { Link,Router,Route,IndexRoute,browserHistory } from 'react-router';
+import { Link, Router, Route, IndexRoute, browserHistory } from 'react-router';
 import LeftPanel from './LeftPanel';
 import Header from './Header';
 import RightPanel from './RightPanel';
 import BlurCover from './BlurCover';
 
 const Main = React.createClass({
-  render(){
-    var className = this.props.startLoading?"zo-blur":"";
+  componentDidUpdate() {
+    this.state.startLoading = false;
+  },
+  getInitialState() {
+    var comp = this;
+    this.props.loadUserInfo();
+    $.ajax({
+      url: "/s/user",
+      method: "GET"
+    }).success(function (data) {
+      const user = JSON.parse(data);
+      comp.props.loadUserInfoSuccess(user);
+      if(!user.state){
+        window.location.pathname = "/user/login";
+      }
+      comp.props.projectListLoading();
+      $.ajax({
+        url: "/s/project/projectList",
+        method: "GET",
+      }).success(function (data) {
+        comp.state.startLoading = false;
+        comp.props.projectListLoadingSuccess(JSON.parse(data));
+      });
+    });
+
+    return {
+      startLoading: true
+    };
+  },
+  render() {
+    var className = this.state.startLoading ? "zo-blur" : "";
     return (
-        <div>
-        <BlurCover {...this.props}></BlurCover>
+      <div>
+        <BlurCover {...this.props} startLoading={this.state.startLoading}></BlurCover>
 
         <div className={className}>
-            <Header {...this.props}></Header>
+          <Header {...this.props}></Header>
 
-            <div className="am-g">
-              <div className="am-u-md-3">
-                <br/>
-                <LeftPanel {...this.props}></LeftPanel>
-              </div>
-              <div className="am-u-md-9">
-                <br />
-                { React.cloneElement(this.props.children,this.props) }
-              </div>
+          <div className="am-g">
+            <div className="am-u-md-3">
+              <br/>
+              <LeftPanel {...this.props}></LeftPanel>
             </div>
+            <div className="am-u-md-9">
+              <br />
+              { React.cloneElement(this.props.children, this.props) }
+            </div>
+          </div>
         </div>
-        </div>
-      );
+      </div>
+    );
   }
 });
 

@@ -4,7 +4,7 @@ const NoAppSelect = React.createClass({
 	render(){
 		return (
 			<div>
-			请在左侧选择 APP；
+			{this.props.msg?this.props.msg:"请在左侧选择 APP；"}
 			</div>
 		);
 	}

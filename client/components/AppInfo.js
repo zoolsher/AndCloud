@@ -1,6 +1,7 @@
 import React from 'react';
 
 var AppInfo = React.createClass({
+
 	render(){
 		var app = this.props.app;
 		return(

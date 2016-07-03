@@ -27,7 +27,7 @@ app.use(session({
     secret: 'AndCloudSafeCodeKey',
     resave: false,
     store: new MongoStore({
-        url: configData.db.url
+        url: configData.db.session_url
     }),
     cookie: { maxAge: 24*60*60*1000 }
 }));
@@ -36,7 +36,7 @@ app.use(session({
     app.use('/touch', express.static(path.join(__dirname, 'node_modules', 'amazeui-touch', 'dist')));
 
 
-MongoClient.connect(configData.db.url, function (err, database) {
+MongoClient.connect(configData.db.db_url, function (err, database) {
     if (err) {
         throw err;
     }
@@ -53,6 +53,8 @@ MongoClient.connect(configData.db.url, function (err, database) {
     var userRouter = require('./server-controllers/user/index')(db);
     app.use('/s/user', userRouter);
 
+    var projectRouter = require('./server-controllers/project/index')(db);
+    app.use('/s/project', projectRouter);
 
     app.get('/m/*', function (req, res) {
         res.sendFile(path.join(__dirname, 'index-mobile.html'));

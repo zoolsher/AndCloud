@@ -2,7 +2,7 @@ import React from 'react';
 
 const BlurCover = React.createClass({
 	handleFinish(){
-		this.props.startLoadingFinish();
+		// this.props.projectListLoadingSuccess();
 	},
 	render(){
 		var loadingFull = {width:"100%"};

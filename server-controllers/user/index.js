@@ -6,16 +6,25 @@ var router = express.Router();
 function routerConnectDB(db) {
 
   router.get('/', function (req, res) {
-    res.send(req.session);
+    if (req.session.isLogin) {
+      var user = {
+        state: true,
+        id: req.session.user._id,
+        name: req.session.user.name
+      }
+      res.send(JSON.stringify(user));
+    } else {
+      res.send(JSON.stringify({ state: false }));
+    }
   });
 
   router.get('/register', function (req, res) {
     var name = req.query.name;
     var pass = req.query.pass;
     User(db).register(name, pass, function (ret) {
-      
+
       res.send(JSON.stringify(ret.state));
-      
+
     });
   });
 
@@ -36,8 +45,8 @@ function routerConnectDB(db) {
     });
   });
 
-  router.get('/existSameUser',function(req,res){
-    User(db).checkUserExists(req.query.name,function(ret){
+  router.get('/existSameUser', function (req, res) {
+    User(db).checkUserExists(req.query.name, function (ret) {
       res.send(ret);
     });
   });

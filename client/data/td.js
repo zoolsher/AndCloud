@@ -10,5 +10,4 @@ for(var i = 0;i<100;i++){
 	});
 }
 
-console.log(testData.length);
 export default testData;

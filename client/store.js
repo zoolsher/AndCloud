@@ -3,18 +3,19 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
 
-import comments from './data/comments';
-import posts from './data/posts';
-import td from './data/td';
+// import comments from './data/comments';
+// import posts from './data/posts';
+// import td from './data/td';
 
 const defaultState = {
-    posts:posts,
-    comments:comments,
-    td:td,
+    // posts:posts,
+    // comments:comments,
+    // td:td,
     searchText:"",// default from empty search
-    startLoading:true,
+    // startLoading:false,
+    projectList:[],
     userInfo:{
-        name:'test'
+        name:'未登录'
     }
 };
 
