@@ -10,7 +10,6 @@ module.exports = {
         './client-mobile/index'
     ],
     login:[
-        'webpack-hot-middleware/client',
         './client-login/index'
     ]
   },
