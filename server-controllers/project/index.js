@@ -22,7 +22,17 @@ function routerConnectDB(db) {
             });
         }
         res.send(JSON.stringify(testData));
-    })
+    });
+    router.post('/createProject', function (req, res) {
+        console.log(req.files);
+        var filename = "filename";//req.query.filename
+        var projectName = req.query.name;
+        //req.files.ww contains file info
+        var detail = {};
+        project(db).createProject(projectName,filename,detail,function(dbRes){
+            res.send(JSON.stringify(dbRes));
+        });
+    });
     return router;
 }
 
