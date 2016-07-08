@@ -1,9 +1,10 @@
 function projectConnectDB(db) {
     var collectionName = "projects";
-    function createProject(name, filepath, detail, callback) {
+    function createProject(userid, name, apkList, detail, callback) {
         db.collection(collectionName).insertOne({
+            userid: userid,
             name: name,
-            filepath: filepath,
+            apkList: apkList,
             detail: detail,
             createTime: Date.now()
         }, function (err, res) {

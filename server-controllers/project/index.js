@@ -1,7 +1,18 @@
 var express = require('express');
 var project = require('./../../server-models/project/index');
 var router = express.Router();
-
+var multer = require('multer');
+var path = require('path');
+var uuid = require('uuid');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '..', '..', 'uploads'));
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${uuid.v4()}.${file.fieldname}`);
+    }
+})
+var upload = multer({ storage: storage });
 function routerConnectDB(db) {
     router.get('/projectDetail', function (req, res) {
         var id = req.query.id;
@@ -23,13 +34,20 @@ function routerConnectDB(db) {
         }
         res.send(JSON.stringify(testData));
     });
-    router.post('/createProject', function (req, res) {
-        console.log(req.files);
-        var filename = "filename";//req.query.filename
-        var projectName = req.query.name;
-        //req.files.ww contains file info
-        var detail = {};
-        project(db).createProject(projectName,filename,detail,function(dbRes){
+
+    var cpUploads = upload.array('apk', 10);
+    router.post('/createProject', cpUploads, function (req, res) {
+
+        var apkList = req.files.map($ => {
+            return {
+                originalName: $.originalname,
+                path: $.path,
+                filename: $.filename
+            }
+        });
+
+        var userid = req.session.user._id;
+        project(db).createProject(userid, req.body.name, apkList, {}, function (dbRes) {
             res.send(JSON.stringify(dbRes));
         });
     });

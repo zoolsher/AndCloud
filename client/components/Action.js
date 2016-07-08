@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Action = React.createClass({
-	render(){
-		return(
+	render() {
+		return (
 			<div>
 				Take Action
 			</div>
