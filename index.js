@@ -29,11 +29,11 @@ app.use(session({
     store: new MongoStore({
         url: configData.db.session_url
     }),
-    cookie: { maxAge: 24*60*60*1000 }// last a day long
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }// last a day long
 }));
 
-    app.use('/public', express.static(path.join(__dirname, 'public')));
-    app.use('/touch', express.static(path.join(__dirname, 'node_modules', 'amazeui-touch', 'dist')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/touch', express.static(path.join(__dirname, 'node_modules', 'amazeui-touch', 'dist')));
 
 
 MongoClient.connect(configData.db.db_url, function (err, database) {
@@ -42,10 +42,10 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
     }
     db = database;
 
-    app.use(function(req,res,next){
-        if(req.session.isLogin===true || req.path.startsWith('/user/login') || req.path.startsWith('/s/user')){
+    app.use(function (req, res, next) {
+        if (req.session.isLogin === true || req.path.startsWith('/user/login') || req.path.startsWith('/s/user')) {
             next();
-        }else{
+        } else {
             res.redirect('/user/login');
         }
     });
@@ -65,7 +65,7 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
     });
 
     app.get('*', function (req, res) {
-        
+
         res.sendFile(path.join(__dirname, 'index.html'));
     });
     app.listen(configData.server.PORT, configData.server.IP, function (err) {
