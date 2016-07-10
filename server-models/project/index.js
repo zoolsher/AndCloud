@@ -30,11 +30,28 @@ function projectConnectDB(db) {
             size: "100MB"
         });
     }
+    function getProjectList(userid,callback){
+        var cursor = db.collection(collectionName).find({
+            userid:userid
+        }).sort({
+            createTime:-1
+        });
+        var docs = [];
+        cursor.each(function(err,doc){
+            if(err) throw err;
+            if(doc!=null){
+                docs.push(doc);
+            }else{
+                callback(docs);
+            }
+        })
+    }
     return {
         createProject: createProject,
         deleteProject: deleteProject,
         updateProject: updateProject,
-        getProject: getProject
+        getProject: getProject,
+        getProjectList: getProjectList
     }
 }
 

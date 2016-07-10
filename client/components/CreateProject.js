@@ -29,7 +29,6 @@ const CreateProject = React.createClass({
 		$("#my-prompt").modal({
 			relatedTarget: this,
 			onConfirm: function (e) {
-				alert('你输入的是：' + e.data || '');
 				comp.submitAll(fileList, e.data);
 			},
 			onCancel: function (e) {
@@ -57,23 +56,30 @@ const CreateProject = React.createClass({
 		}
 		var upload = httpRequest.upload;
 		upload.addEventListener('progress', this.uploadProgress, false);
-		upload.addEventListener('success', this.uploadSuccess, false);
+		upload.addEventListener('load', this.uploadSuccess, false);
 		upload.addEventListener('error', this.uploadError, false);
-		httpRequest.open("POST","/s/project/createProject");
+		httpRequest.open("POST", "/s/project/createProject");
 		httpRequest.send(formData);
 	},
 	uploadError(evt) {
-		alert('err');
+
 	},
 	uploadSuccess(evt) {
-		alert('success');
+		console.log(this);
+		var comp = this;
+		$.ajax({
+			url: "/s/project/projectList",
+			method: "GET",
+		}).success(function (data) {
+			comp.props.projectListLoadingSuccess(JSON.parse(data));
+		});
 	},
 	uploadProgress(evt) {
-		alert('progress');
+
 	},
 	renderAlert() {
 		return (
-			<div className="am-modal am-modal-alert" tabIndex="-1" id="my-alert" ref="alert">
+			<div className= "am-modal am-modal-alert" tabIndex= "-1" id= "my-alert" ref= "alert" >
 				<div className="am-modal-dialog">
 					<div className="am-modal-hd"> AndCloud 提醒您 </div>
 					<div className="am-modal-bd">
@@ -83,7 +89,7 @@ const CreateProject = React.createClass({
 						<span className="am-modal-btn">确定</span>
 					</div>
 				</div>
-			</div>
+			</div >
 		);
 	},
 	renderModel() {

@@ -30,7 +30,7 @@ const LeftPanel = React.createClass({
 					<span >i</span>
 				</a>
 				<hr/>
-				<CreateProject />
+				<CreateProject {...this.props}/>
 				<br/>
 				历史
 				<hr/>

@@ -5,19 +5,18 @@ import NoAppSelect from './NoAppSelect';
 const RightPanel = React.createClass({
 
 	render() {
-		var app = this.props.projectList[this.props.params.appid];
-		if (app) {
+		var project = this.props.projectList[this.props.params.appid];
+		if (project) {
 			return (
 				<div>
-					<AppInfo app={app}>
-					</AppInfo>
+					{project.apkList.map($ => <AppInfo app={$}/>) }
 					<hr/>
 					<Action>
 					</Action>
 				</div>
 			);
-		}else{
-			return(
+		} else {
+			return (
 				<NoAppSelect msg={"这个 app 不存在"}/>
 			);
 		}

@@ -18,7 +18,7 @@ const Main = React.createClass({
     }).success(function (data) {
       const user = JSON.parse(data);
       comp.props.loadUserInfoSuccess(user);
-      if(!user.state){
+      if (!user.state) {
         window.location.pathname = "/user/login";
       }
       comp.props.projectListLoading();
@@ -26,12 +26,12 @@ const Main = React.createClass({
         url: "/s/project/projectList",
         method: "GET",
       }).success(function (data) {
-        window.setTimeout(function(){
+        window.setTimeout(function () {
           comp.setState({
-            startLoading : false
+            startLoading: false
           })
-        },1000);
-        
+        }, 1000);
+
         comp.props.projectListLoadingSuccess(JSON.parse(data));
       });
     });

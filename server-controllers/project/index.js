@@ -21,18 +21,11 @@ function routerConnectDB(db) {
         });
     });
     router.get('/projectList', function (req, res) {
-        var testData = [];
-        for (var i = 0; i < 100; i++) {
-            testData.push({
-                id: i,
-                title: "Chrome " + i,
-                version: 10 + i,
-                icon: "/public/image/chrome.png",
-                size: 10 + i + "MB",
-                uploadTime: i + "天前"
-            });
-        }
-        res.send(JSON.stringify(testData));
+        var userid = req.session.user._id;
+        project(db).getProjectList(userid,function(projs){
+            res.send(JSON.stringify(projs));
+        });
+        
     });
 
     var cpUploads = upload.array('apk', 10);

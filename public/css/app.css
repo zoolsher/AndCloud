@@ -355,3 +355,13 @@
 /**
 * the :end of loading bar
 */
+/*
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 1024px) {
+	select:focus,
+	textarea:focus,
+	input:focus {
+		font-size: 16px !important;
+	}
+}*/
