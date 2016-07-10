@@ -3,7 +3,9 @@ import AppInfo from './AppInfo';
 import Action from './Action';
 import NoAppSelect from './NoAppSelect';
 const RightPanel = React.createClass({
-
+	propTypes:{
+		projectList:React.PropTypes.array
+	},
 	render() {
 		var project = this.props.projectList[this.props.params.appid];
 		if (project) {

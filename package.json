@@ -10,8 +10,7 @@
     "clean": "rimraf dist",
     "startpro": "npm run build &&NODE_ENV=production node index.js",
     "start": "NODE_ENV=development node index.js",
-    "startWin": "SET NODE_ENV=development&&node index.js",
-    "flow": "flow;"
+    "startWin": "SET NODE_ENV=development&&node index.js"
   },
   "author": "zoolsher",
   "license": "MIT",
