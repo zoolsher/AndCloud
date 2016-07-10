@@ -1,0 +1,9 @@
+[include]
+/client/*.js
+/client-login/**/*.js
+/client-mobile/**/*.js
+/server-controlllers/**/*.js
+/server-models/**/*.js
+
+[ignore]
+

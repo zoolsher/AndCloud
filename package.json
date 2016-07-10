@@ -11,7 +11,7 @@
     "startpro": "npm run build &&NODE_ENV=production node index.js",
     "start": "NODE_ENV=development node index.js",
     "startWin": "SET NODE_ENV=development&&node index.js",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+    "flow": "flow;"
   },
   "author": "zoolsher",
   "license": "MIT",

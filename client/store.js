@@ -1,4 +1,5 @@
-import {createStore,compse} from 'redux';
+//@flow
+import {createStore, compse} from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
@@ -7,19 +8,19 @@ import rootReducer from './reducers/index';
 // import posts from './data/posts';
 // import td from './data/td';
 
-const defaultState = {
+const defaultState: object = {
     // posts:posts,
     // comments:comments,
     // td:td,
-    searchText:"",// default from empty search
+    searchText: "",// default from empty search
     // startLoading:false,
-    projectList:[],
-    userInfo:{
-        name:'未登录'
+    projectList: [],
+    userInfo: {
+        name: '未登录'
     }
 };
 
-const store = createStore(rootReducer,defaultState);
+const store = createStore(rootReducer, defaultState);
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
