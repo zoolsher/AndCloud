@@ -45,7 +45,7 @@ var AppInfo = React.createClass({
 
 				<div className="am-u-md-10 am-u-sm-10">
 					<div>
-						应用名称：<code>{app['title'] || "未分析完成呢"}</code>
+						应用名称：<code>{app['originalName'] || "未分析完成呢"}</code>
 					</div>
 					<div>
 						版本号：<code>{app['version'] || "未分析完成呢"}</code>
@@ -56,6 +56,9 @@ var AppInfo = React.createClass({
 					<div>
 						上传时间: <code>{ this.getDateDiff(app['createTime']) }</code>
 					</div>
+					<pre>
+						{JSON.stringify(app)}
+					</pre>
 				</div>
 			</div>
 		);

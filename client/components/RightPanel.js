@@ -3,15 +3,23 @@ import AppInfo from './AppInfo';
 import Action from './Action';
 import NoAppSelect from './NoAppSelect';
 const RightPanel = React.createClass({
-	propTypes:{
-		projectList:React.PropTypes.array
+	propTypes: {
+		projectList: React.PropTypes.array
 	},
 	render() {
-		var project = this.props.projectList[this.props.params.appid];
+		var project = this.props.projectList.find($ => { return this.props.params.appid == $.displayId });
 		if (project) {
 			return (
 				<div>
-					{project.apkList.map($ => <AppInfo app={$}/>) }
+					{project.name}
+					<hr/>
+					{project.apkList.map($ => {
+						return (
+							<div>
+								<AppInfo app={$}/>
+							</div>
+						)
+					}) }
 					<hr/>
 					<Action>
 					</Action>

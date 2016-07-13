@@ -1,3 +1,4 @@
+
 var express = require('express');
 var project = require('./../../server-models/project/index');
 var router = express.Router();
@@ -23,7 +24,16 @@ function routerConnectDB(db) {
     router.get('/projectList', function (req, res) {
         var userid = req.session.user._id;
         project(db).getProjectList(userid,function(projs){
-            res.send(JSON.stringify(projs));
+            //remove the path from proj.apklist.path
+            var temp = projs.map($=>{
+                $.apkList = $.apkList.map(_=>{
+                    _.path = "";
+                    delete _.path;
+                    return _
+                })
+                return $;
+            })
+            res.send(JSON.stringify(temp));
         });
         
     });

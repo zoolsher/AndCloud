@@ -4,8 +4,11 @@ function projectConnectDB(db) {
         db.collection(collectionName).insertOne({
             userid: userid,
             name: name,
-            apkList: apkList,
-            detail: detail,
+            apkList: apkList.map($=>{
+                var temp = Object.assign({},$);
+                temp.detail = {};
+                return temp;
+            }),
             createTime: Date.now()
         }, function (err, res) {
             if (err) throw err;

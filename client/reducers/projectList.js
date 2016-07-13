@@ -6,7 +6,10 @@ function projectListStartLoading(state = [], action) {
 			var newState = [];
 			return newState;
 		case PROJECT_LIST_LOADING_SUCCESS:
-			var newState = action.projectList;
+			var newState = action.projectList.map(($,key)=>{
+				return {...$,displayId:key}
+			})
+			// var newState = action.projectList;
 			return newState;
 		default:
 			return state;

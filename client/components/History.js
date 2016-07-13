@@ -64,7 +64,7 @@ const History = React.createClass({
 						}).map((proj, index) => {
 							return (
 								<li key={proj._id}>
-									<Link to={`/page/${curPage}/app/${index}`}>
+									<Link to={`/page/${curPage}/app/${proj.displayId}`}>
 										{proj.name}
 										<span className="am-badge am-badge-success">{this.compTimeDiff(proj.createTime)}</span>
 									</Link>
