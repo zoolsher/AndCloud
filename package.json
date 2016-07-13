@@ -9,7 +9,7 @@
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
     "startpro": "npm run build &&NODE_ENV=production node index.js",
-    "start": "NODE_ENV=development node index.js",
+    "start": "cross-env NODE_ENV=development node index.js",
     "startWin": "SET NODE_ENV=development&&node index.js"
   },
   "author": "zoolsher",
@@ -28,6 +28,7 @@
     "babel-preset-react": "^6.5.0",
     "config": "^1.21.0",
     "connect-mongo": "^1.2.1",
+    "cross-env": "^1.0.8",
     "crypto-js": "^3.1.6",
     "css-loader": "^0.23.1",
     "eslint": "^2.2.0",
