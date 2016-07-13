@@ -13,14 +13,15 @@ const RightPanel = React.createClass({
 				<div>
 					{project.name}
 					<hr/>
-					{project.apkList.map($ => {
+					{project.apkList.map(($,_) => {
 						return (
-							<div>
-								<AppInfo app={$}/>
+							<div key={_}>
+								<AppInfo  app={$}/>
+								<hr/>
 							</div>
 						)
 					}) }
-					<hr/>
+					
 					<Action>
 					</Action>
 				</div>

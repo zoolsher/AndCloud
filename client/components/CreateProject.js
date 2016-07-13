@@ -46,7 +46,9 @@ const CreateProject = React.createClass({
 	},
 	submitAll(fileList, name) {
 		var formData = new FormData();
-		formData.append('apk', fileList[0]);
+		fileList.map($=>{
+			formData.append('apk',$);
+		});
 		formData.append('name', name);
 		var httpRequest;
 		if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
