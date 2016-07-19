@@ -27,18 +27,23 @@ function routerConnectDB(db) {
     });
     router.get('/projectList', function (req, res) {
         var userid = req.session.user._id;
-        (new Project(db)).getProjectList(userid,function(projs){
-            //remove the path from proj.apklist.path
-            var temp = projs.map($=>{
-                $.apkList = $.apkList.map(_=>{
-                    _.path = "";
-                    delete _.path;
-                    return _
-                })
-                return $;
-            })
-            res.send(JSON.stringify(temp));
-        });
+        (new Project(db)).getProjectList(userid)
+        .then(
+            (projs)=>{
+                var temp = projs.map($=>{
+                    $.apkList = $.apkList.map(_=>{
+                        _.path = "";
+                        delete _.path;
+                        return _
+                    })
+                    return $;
+                });
+                res.send(JSON.stringify(temp));
+            }
+        )
+        .error({err}=>{
+            res.send('failed');
+        })
         
     });
 
