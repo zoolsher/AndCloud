@@ -1,8 +1,7 @@
-'use strict';
-
 var express = require('express');
 var User = require('./../../server-models/user/index');
 var router = express.Router();
+
 
 function routerConnectDB(db) {
 
@@ -12,7 +11,7 @@ function routerConnectDB(db) {
         state: true,
         id: req.session.user._id,
         name: req.session.user.name
-      };
+      }
       res.send(JSON.stringify(user));
     } else {
       res.send(JSON.stringify({ state: false }));
@@ -25,6 +24,7 @@ function routerConnectDB(db) {
     User(db).register(name, pass, function (ret) {
 
       res.send(JSON.stringify(ret.state));
+
     });
   });
 

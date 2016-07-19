@@ -1,5 +1,3 @@
-'use strict';
-
 var sha256 = require('crypto-js/sha256');
 
 function User(db) {
@@ -17,10 +15,10 @@ function User(db) {
         res.each(function (err, doc) {
             if (err) throw err;
             if (doc != null) {
-                if (checkpass(pass, doc.pass)) {
+                if(checkpass(pass, doc.pass)){
                     retuser = doc;
                 }
-            } else {
+            }else{
                 callback(null, retuser);
             }
         });
@@ -59,7 +57,8 @@ function User(db) {
         login: login,
         checkUserExists: checkUserExists,
         register: register
-    };
+    }
 }
 
 module.exports = User;
+

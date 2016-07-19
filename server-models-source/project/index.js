@@ -1,16 +1,11 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 function projectConnectDB(db) {
     var collectionName = "projects";
     function createProject(userid, name, apkList, detail, callback) {
         db.collection(collectionName).insertOne({
             userid: userid,
             name: name,
-            apkList: apkList.map(function ($) {
-                var temp = Object.assign({}, $);
+            apkList: apkList.map($=>{
+                var temp = Object.assign({},$);
                 temp.detail = {};
                 return temp;
             }),
@@ -18,15 +13,19 @@ function projectConnectDB(db) {
         }, function (err, res) {
             if (err) throw err;
             if (res.result.ok) {
-                var lastId = res.insertedId.toString();
+                const lastId = res.insertedId.toString();
                 callback(lastId);
             } else {
                 callback(false);
             }
         });
     }
-    function deleteProject(id, callback) {}
-    function updateProject(id, detail, callback) {}
+    function deleteProject(id, callback) {
+
+    }
+    function updateProject(id, detail, callback) {
+
+    }
     function getProject(id, callback) {
         callback({
             id: id,
@@ -34,21 +33,21 @@ function projectConnectDB(db) {
             size: "100MB"
         });
     }
-    function getProjectList(userid, callback) {
+    function getProjectList(userid,callback){
         var cursor = db.collection(collectionName).find({
-            userid: userid
+            userid:userid
         }).sort({
-            createTime: -1
+            createTime:-1
         });
         var docs = [];
-        cursor.each(function (err, doc) {
-            if (err) throw err;
-            if (doc != null) {
+        cursor.each(function(err,doc){
+            if(err) throw err;
+            if(doc!=null){
                 docs.push(doc);
-            } else {
+            }else{
                 callback(docs);
             }
-        });
+        })
     }
     return {
         createProject: createProject,
@@ -56,7 +55,7 @@ function projectConnectDB(db) {
         updateProject: updateProject,
         getProject: getProject,
         getProjectList: getProjectList
-    };
+    }
 }
 
-exports.default = projectConnectDB;
+export default projectConnectDB;
