@@ -1,40 +1,35 @@
-function projectConnectDB(db) {
-    var collectionName = "projects";
-    function createProject(userid, name, apkList, detail, callback) {
-        db.collection(collectionName).insertOne({
-            userid: userid,
-            name: name,
-            apkList: apkList.map($=>{
-                var temp = Object.assign({},$);
-                temp.detail = {};
-                return temp;
-            }),
-            createTime: Date.now()
-        }, function (err, res) {
-            if (err) throw err;
-            if (res.result.ok) {
-                const lastId = res.insertedId.toString();
-                callback(lastId);
-            } else {
-                callback(false);
-            }
+import Promise from 'bluebird';
+const collectionName = "projects";
+class projectConnectDB{
+    constructor(db){
+        this.db = db;   
+    }
+    createProject(userid,name,apkList,detail){
+        return new Promise((resolve,reject)=>{
+            this.db.collection(collectionName).insertOne({
+                userid: userid,
+                name: name,
+                apkList: apkList.map($=>{
+                    var temp = Object.assign({},$);
+                    temp.detail = {};
+                    return temp;
+                }),
+                createTime: Date.now()
+            },function(err,res){
+                if(err) {
+                    reject(err)
+                }else{
+                    if(res.result.ok){
+                        resolve(res.insertedId.toString());
+                    }else{
+                        reject(false);
+                    }
+                }
+            })
         });
     }
-    function deleteProject(id, callback) {
-
-    }
-    function updateProject(id, detail, callback) {
-
-    }
-    function getProject(id, callback) {
-        callback({
-            id: id,
-            name: "Chrome Whatever",
-            size: "100MB"
-        });
-    }
-    function getProjectList(userid,callback){
-        var cursor = db.collection(collectionName).find({
+    getProjectList(userid,callback){
+        var cursor = this.db.collection(collectionName).find({
             userid:userid
         }).sort({
             createTime:-1
@@ -49,13 +44,8 @@ function projectConnectDB(db) {
             }
         })
     }
-    return {
-        createProject: createProject,
-        deleteProject: deleteProject,
-        updateProject: updateProject,
-        getProject: getProject,
-        getProjectList: getProjectList
-    }
 }
+
+
 
 export default projectConnectDB;

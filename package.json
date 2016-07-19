@@ -10,10 +10,10 @@
     "clean": "rimraf dist",
     "startpro": "npm run build &&NODE_ENV=production node index.js",
     "start": "cross-env NODE_ENV=development npm run start:babel && node index.js",
-    "start:babel":"npm run clean:babel && npm run build:babel-models && npm run build:babel-controllers",
-    "clean:babel":"rimraf server-models server-coontrollers",
-    "build:babel-models":"babel server-models-source --out-dir server-models ",
-    "build:babel-controllers":"babel server-controllers-source --out-dir server-controllers "
+    "start:babel": "npm run clean:babel && npm run build:babel-models && npm run build:babel-controllers",
+    "clean:babel": "rimraf server-models server-coontrollers",
+    "build:babel-models": "babel server-models-source --out-dir server-models ",
+    "build:babel-controllers": "babel server-controllers-source --out-dir server-controllers "
   },
   "author": "zoolsher",
   "license": "MIT",
@@ -29,6 +29,7 @@
     "babel-polyfill": "^6.5.0",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
+    "bluebird": "^3.4.1",
     "config": "^1.21.0",
     "connect-mongo": "^1.2.1",
     "cross-env": "^1.0.8",
