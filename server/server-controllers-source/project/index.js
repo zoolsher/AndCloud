@@ -32,16 +32,18 @@ function routerConnectDB(db) {
             (projs)=>{
                 var temp = projs.map($=>{
                     $.apkList = $.apkList.map(_=>{
-                        _.path = "";
-                        delete _.path;
-                        return _
+                        return {
+                            ..._,
+                            path:undefined
+                        }
                     })
                     return $;
                 });
                 res.send(JSON.stringify(temp));
+                return null;
             }
         )
-        .error({err}=>{
+        .error((err)=>{
             res.send('failed');
         })
         
@@ -62,6 +64,7 @@ function routerConnectDB(db) {
         (new Project(db)).createProject(userid, req.body.name, apkList, {})
         .then((dbRes)=>{
             res.send(JSON.stringify(dbRes));
+            return null;
         })
         .error((err)=>{
             res.send(JSON.stringify("FAILED"));

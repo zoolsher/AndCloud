@@ -4,13 +4,13 @@ console.log('using production');
 module.exports = {
   entry: {
     desktop:[
-        './client/index'
+        './client/client-desktop/index'
     ],
     mobile:[
-        './client-mobile/index'
+        './client/client-mobile/index'
     ],
     login:[
-        './client-login/index'
+        './client/client-login/index'
     ]
   },
   output: {

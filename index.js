@@ -50,10 +50,10 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
         }
     });
 
-    var userRouter = require('./server-controllers/user/index')(db);
+    var userRouter = require('./server/server-controllers/user/index')(db);
     app.use('/s/user', userRouter);
 
-    var projectRouter = require('./server-controllers/project/index')(db);
+    var projectRouter = require('./server/server-controllers/project/index')(db);
     app.use('/s/project', projectRouter);
 
     app.get('/m/*', function (req, res) {

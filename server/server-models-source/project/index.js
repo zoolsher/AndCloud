@@ -10,9 +10,13 @@ class projectConnectDB {
                 userid: userid,
                 name: name,
                 apkList: apkList.map($ => {
-                    var temp = Object.assign({}, $);
-                    temp.detail = {};
-                    return temp;
+                    // var temp = Object.assign({}, $);
+                    // temp.detail = {};
+                    // return temp;
+                    return {
+                        ...$,
+                        detail:{}
+                    }
                 }),
                 createTime: Date.now()
             }, function (err, res) {

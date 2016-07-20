@@ -6,15 +6,15 @@ module.exports = {
   entry: {
     desktop:[
         'webpack-hot-middleware/client',
-        './client/index'
+        './client/client-desktop/index'
     ],
     mobile:[
         'webpack-hot-middleware/client',
-        './client-mobile/index'
+        './client/client-mobile/index'
     ],
     login:[
         'webpack-hot-middleware/client',
-        './client-login/index'
+        './client/client-login/index'
     ]
   },
   output: {

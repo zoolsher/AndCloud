@@ -1,5 +1,7 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _index = require('./../../server-models/project/index');
 
 var _index2 = _interopRequireDefault(_index);
@@ -19,14 +21,7 @@ var _uuid2 = _interopRequireDefault(_uuid);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var express = require('express');
-
 var router = express.Router();
-//var multer = require('multer');
-
-// var path = require('path');
-
-// var uuid = require('uuid');
-
 
 var storage = _multer2.default.diskStorage({
     destination: function destination(req, file, cb) {
@@ -48,17 +43,19 @@ function routerConnectDB(db) {
     });
     router.get('/projectList', function (req, res) {
         var userid = req.session.user._id;
-        new _index2.default(db).getProjectList(userid, function (projs) {
-            //remove the path from proj.apklist.path
+        new _index2.default(db).getProjectList(userid).then(function (projs) {
             var temp = projs.map(function ($) {
                 $.apkList = $.apkList.map(function (_) {
-                    _.path = "";
-                    delete _.path;
-                    return _;
+                    return _extends({}, _, {
+                        path: undefined
+                    });
                 });
                 return $;
             });
             res.send(JSON.stringify(temp));
+            return null;
+        }).error(function (err) {
+            res.send('failed');
         });
     });
 
@@ -76,6 +73,7 @@ function routerConnectDB(db) {
         var userid = req.session.user._id;
         new _index2.default(db).createProject(userid, req.body.name, apkList, {}).then(function (dbRes) {
             res.send(JSON.stringify(dbRes));
+            return null;
         }).error(function (err) {
             res.send(JSON.stringify("FAILED"));
         });
