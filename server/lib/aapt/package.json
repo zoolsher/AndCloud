@@ -1,0 +1,23 @@
+{
+  "name": "aapt",
+  "version": "0.0.1",
+  "description": "aapt on node via command line",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel code.js --out-file index.js",
+    "build:test": "babel ./test/test_index.js --out-file ./test/index.js",
+    "start": "npm run build && node index.js",
+    "test": "npm run build && npm run build:test"
+  },
+  "keywords": [
+    "aapt",
+    "node"
+  ],
+  "author": "zoolsher",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "bluebird": "^3.4.1",
+    "shelljs": "^0.7.0"
+  }
+}

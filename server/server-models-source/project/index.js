@@ -9,27 +9,28 @@ class projectConnectDB {
             this.db.collection(collectionName).insertOne({
                 userid: userid,
                 name: name,
-                apkList: apkList.map($ => {
+                apkList: apkList.map((obj) => {
                     // var temp = Object.assign({}, $);
                     // temp.detail = {};
                     // return temp;
                     return {
-                        ...$,
-                        detail:{}
+                        ...obj,
+                        detail: {}
                     }
                 }),
                 createTime: Date.now()
-            }, function (err, res) {
-                if (err) {
-                    reject(err)
-                } else {
-                    if (res.result.ok) {
-                        resolve(res.insertedId.toString());
+            },
+                function (err, res) {
+                    if (err) {
+                        reject(err)
                     } else {
-                        reject(false);
+                        if (res.result.ok) {
+                            resolve(res.insertedId.toString());
+                        } else {
+                            reject(false);
+                        }
                     }
-                }
-            })
+                })
         });
     }
     getProjectList(userid) {
@@ -50,6 +51,23 @@ class projectConnectDB {
                     resolve(docs);
                 }
             })
+        });
+    }
+    updateApkList(id, apkList) {
+        return new Promise((resolve, reject) => {
+            var cursor = this.db.collection(collectionName).findAndModify(
+                { _id: id },
+                [['_id', 'asc']],  // sort order
+                { $set: { apkList: apkList } },
+                {},
+                function (err, object) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(object);
+                    }
+                }
+            )
         });
     }
 }

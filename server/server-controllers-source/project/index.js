@@ -5,7 +5,9 @@ var router = express.Router();
 import Project from './../../server-models/project/index';
 import multer from 'multer';
 import path from 'path';
-import uuid from 'uuid'
+import uuid from 'uuid';
+import aapt from './../../lib/aapt';
+import Promise from 'bluebird';
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -64,6 +66,14 @@ function routerConnectDB(db) {
         (new Project(db)).createProject(userid, req.body.name, apkList, {})
         .then((dbRes)=>{
             res.send(JSON.stringify(dbRes));
+            Promise.all(apkList.map($=>{
+                return (new aapt()).analize($.path);
+            })).then(function(results){
+                (new Project(db)).updateDetail(dbRes,{});
+                return null;
+            }).error((err)=>{
+                (new Project(db)).updateDetail(dbRes,apk,{"analize":"failed"});
+            });
             return null;
         })
         .error((err)=>{
