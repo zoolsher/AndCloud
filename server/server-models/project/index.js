@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -8,7 +8,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _bluebird = require("bluebird");
+var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
@@ -26,7 +26,7 @@ var projectConnectDB = function () {
     }
 
     _createClass(projectConnectDB, [{
-        key: "createProject",
+        key: 'createProject',
         value: function createProject(userid, name, apkList, detail) {
             var _this = this;
 
@@ -34,11 +34,11 @@ var projectConnectDB = function () {
                 _this.db.collection(collectionName).insertOne({
                     userid: userid,
                     name: name,
-                    apkList: apkList.map(function ($) {
+                    apkList: apkList.map(function (obj) {
                         // var temp = Object.assign({}, $);
                         // temp.detail = {};
                         // return temp;
-                        return _extends({}, $, {
+                        return _extends({}, obj, {
                             detail: {}
                         });
                     }),
@@ -57,7 +57,7 @@ var projectConnectDB = function () {
             });
         }
     }, {
-        key: "getProjectList",
+        key: 'getProjectList',
         value: function getProjectList(userid) {
             var _this2 = this;
 
@@ -76,6 +76,22 @@ var projectConnectDB = function () {
                         docs.push(doc);
                     } else {
                         resolve(docs);
+                    }
+                });
+            });
+        }
+    }, {
+        key: 'updateApkList',
+        value: function updateApkList(id, apkList) {
+            var _this3 = this;
+
+            return new _bluebird2.default(function (resolve, reject) {
+                var cursor = _this3.db.collection(collectionName).findAndModify({ _id: id }, [['_id', 'asc']], // sort order
+                { $set: { apkList: apkList } }, {}, function (err, object) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(object);
                     }
                 });
             });

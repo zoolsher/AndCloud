@@ -26,7 +26,20 @@ var Login = React.createClass({
 		});
 
 	},
-
+	componentDidMount(){
+		var username = $(this.refs.username);
+		var password = $(this.refs.password);
+		username.bind('keydown',(e)=>{
+			if(e.which==13){
+				password.focus();
+			}
+		});
+		password.bind('keydown',(e)=>{
+			if(e.which==13){
+				this.submitInfo(e);
+			}
+		});
+	},
 	render() {
 		var btnname = '';
 		switch (this.props.login.state) {

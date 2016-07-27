@@ -18,6 +18,14 @@ var _uuid = require('uuid');
 
 var _uuid2 = _interopRequireDefault(_uuid);
 
+var _aapt = require('./../../lib/aapt');
+
+var _aapt2 = _interopRequireDefault(_aapt);
+
+var _bluebird = require('bluebird');
+
+var _bluebird2 = _interopRequireDefault(_bluebird);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var express = require('express');
@@ -73,6 +81,14 @@ function routerConnectDB(db) {
         var userid = req.session.user._id;
         new _index2.default(db).createProject(userid, req.body.name, apkList, {}).then(function (dbRes) {
             res.send(JSON.stringify(dbRes));
+            _bluebird2.default.all(apkList.map(function ($) {
+                return new _aapt2.default().analize($.path);
+            })).then(function (results) {
+                new _index2.default(db).updateDetail(dbRes, {});
+                return null;
+            }).error(function (err) {
+                new _index2.default(db).updateDetail(dbRes, apk, { "analize": "failed" });
+            });
             return null;
         }).error(function (err) {
             res.send(JSON.stringify("FAILED"));
