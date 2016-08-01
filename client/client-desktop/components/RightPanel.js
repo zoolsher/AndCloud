@@ -2,6 +2,7 @@ import React from 'react';
 import AppInfo from './AppInfo';
 import Action from './Action';
 import NoAppSelect from './NoAppSelect';
+import {Link} from 'react-router';
 const RightPanel = React.createClass({
 	propTypes: {
 		projectList: React.PropTypes.array
@@ -12,6 +13,7 @@ const RightPanel = React.createClass({
 			return (
 				<div>
 					{project.name}
+					<a href="/report/0" className="am-btn am-btn-default" >查看报告</a>
 					<hr/>
 					{project.apkList.map(($,_) => {
 						return (

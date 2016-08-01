@@ -11,6 +11,9 @@ module.exports = {
     ],
     login:[
         './client/client-login/index'
+    ],
+    report:[
+        './client/client-report/index'
     ]
   },
   output: {

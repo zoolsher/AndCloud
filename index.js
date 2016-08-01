@@ -65,6 +65,10 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
         res.sendFile(path.join(__dirname, 'login.html'));
     });
 
+    app.get('/report/*',function(req,res){
+        res.sendFile(path.join(__dirname,'report.html'));
+    })
+
     app.get('*', function (req, res) {
 
         res.sendFile(path.join(__dirname, 'index.html'));

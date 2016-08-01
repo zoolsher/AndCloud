@@ -15,6 +15,10 @@ module.exports = {
     login:[
         'webpack-hot-middleware/client',
         './client/client-login/index'
+    ],
+    report:[
+        'webpack-hot-middleware/client',
+        './client/client-report/index'
     ]
   },
   output: {

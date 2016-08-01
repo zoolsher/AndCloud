@@ -46,22 +46,26 @@ var Aapt = function () {
                     break;
                 case "win32":
                     //use windows
+                    this.aaptPath = _config2.default['WIN32'];
                     break;
                 case "linux":
                     //use linux
+                    this.apptPath = _config2.default['LINUX'];
                     break;
             }
         }
     }, {
         key: 'analize',
         value: function analize(apkAddress) {
-            var order = './' + this.aaptPath + ' dump badging ' + apkAddress;
+            var order = '' + __dirname + this.aaptPath + ' dump badging ' + apkAddress;
             return new _bluebird2.default(function (resolve, reject) {
                 _shelljs2.default.exec(order, function (code, stdout, stderr) {
+                    console.log(stdout);
                     if (stderr) {
-                        reject(code, stderr);
+                        reject(stderr);
                     } else {
-                        var res = parser.parse(stdout);
+
+                        var res = parser.parse(stdout.substr(0, stdout.length - 1));
                         resolve(res);
                     }
                 });

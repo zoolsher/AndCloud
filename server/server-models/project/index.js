@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _bluebird = require('bluebird');
@@ -17,6 +15,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var collectionName = "projects";
+var ObjectId = require('mongodb').ObjectID;
 
 var projectConnectDB = function () {
     function projectConnectDB(db) {
@@ -35,12 +34,9 @@ var projectConnectDB = function () {
                     userid: userid,
                     name: name,
                     apkList: apkList.map(function (obj) {
-                        // var temp = Object.assign({}, $);
-                        // temp.detail = {};
-                        // return temp;
-                        return _extends({}, obj, {
-                            detail: {}
-                        });
+                        var temp = Object.assign({}, obj);
+                        temp.detail = {};
+                        return temp;
                     }),
                     createTime: Date.now()
                 }, function (err, res) {
@@ -86,8 +82,7 @@ var projectConnectDB = function () {
             var _this3 = this;
 
             return new _bluebird2.default(function (resolve, reject) {
-                var cursor = _this3.db.collection(collectionName).findAndModify({ _id: id }, [['_id', 'asc']], // sort order
-                { $set: { apkList: apkList } }, {}, function (err, object) {
+                var cursor = _this3.db.collection(collectionName).updateOne({ _id: new ObjectId(id) }, { $set: { apkList: apkList } }, function (err, object) {
                     if (err) {
                         reject(err);
                     } else {

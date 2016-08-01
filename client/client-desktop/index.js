@@ -6,9 +6,9 @@ import { Link, Router, Route, IndexRoute, browserHistory, IndexRedirect } from '
 import NoMatch from './components/NoMatch';
 import { Provider } from 'react-redux';
 import store, {history} from './store';
+import LeftPanel from './components/LeftPanel';
 import RightPanel from './components/RightPanel';
 import NoAppSelect from './components/NoAppSelect';
-
 
 const router = (
 	<Provider store={store}>

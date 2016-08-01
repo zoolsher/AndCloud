@@ -33,7 +33,7 @@ var router = express.Router();
 
 var storage = _multer2.default.diskStorage({
     destination: function destination(req, file, cb) {
-        cb(null, _path2.default.join(__dirname, '..', '..', 'uploads'));
+        cb(null, _path2.default.join(__dirname, '..', '..', '..', 'uploads'));
     },
     filename: function filename(req, file, cb) {
         cb(null, _uuid2.default.v4() + '.' + file.fieldname);
@@ -80,14 +80,25 @@ function routerConnectDB(db) {
 
         var userid = req.session.user._id;
         new _index2.default(db).createProject(userid, req.body.name, apkList, {}).then(function (dbRes) {
+            //dbRes is the id of the project;
             res.send(JSON.stringify(dbRes));
             _bluebird2.default.all(apkList.map(function ($) {
                 return new _aapt2.default().analize($.path);
             })).then(function (results) {
-                new _index2.default(db).updateDetail(dbRes, {});
+                var newApkList = apkList.map(function (apk, index) {
+                    apk.detail = results[index];
+                    return apk;
+                });
+                return new _index2.default(db).updateApkList(dbRes, newApkList);
+            }).catch(function (err) {
+                var newApkList = apkList.map(function (apk, index) {
+                    apk.detail = err;
+                    return apk;
+                });
+                return new _index2.default(db).updateApkList(dbRes, newApkList);
+            }).then(function (res) {
+                console.log(res);
                 return null;
-            }).error(function (err) {
-                new _index2.default(db).updateDetail(dbRes, apk, { "analize": "failed" });
             });
             return null;
         }).error(function (err) {

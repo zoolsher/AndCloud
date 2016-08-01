@@ -26,14 +26,18 @@ class Aapt {
         }        
     }
     analize(apkAddress){
-        const order = `./${this.aaptPath} dump badging ${apkAddress}`;
+        const order = `${__dirname}${this.aaptPath} dump badging ${apkAddress}`;
         return new Promise((resolve,reject)=>{
             shell.exec(order,function(code,stdout,stderr){
+                console.log(stdout);
                 if(stderr){
-                    reject(code,stderr);
+                    reject(stderr);
                 }else{
-                    var res = parser.parse(stdout);
-                    resolve(res);
+
+                        var res = parser.parse(stdout.substr(0,stdout.length-1));
+                        resolve(res);
+
+
                 }
             })
         });

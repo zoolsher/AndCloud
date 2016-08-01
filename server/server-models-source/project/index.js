@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 const collectionName = "projects";
+var ObjectId = require('mongodb').ObjectID;
 class projectConnectDB {
     constructor(db) {
         this.db = db;
@@ -10,13 +11,9 @@ class projectConnectDB {
                 userid: userid,
                 name: name,
                 apkList: apkList.map((obj) => {
-                    // var temp = Object.assign({}, $);
-                    // temp.detail = {};
-                    // return temp;
-                    return {
-                        ...obj,
-                        detail: {}
-                    }
+                    var temp = Object.assign({}, obj);
+                    temp.detail = {};
+                    return temp;
                 }),
                 createTime: Date.now()
             },
@@ -55,11 +52,9 @@ class projectConnectDB {
     }
     updateApkList(id, apkList) {
         return new Promise((resolve, reject) => {
-            var cursor = this.db.collection(collectionName).findAndModify(
-                { _id: id },
-                [['_id', 'asc']],  // sort order
+            var cursor = this.db.collection(collectionName).updateOne(
+                { _id: new ObjectId(id) },
                 { $set: { apkList: apkList } },
-                {},
                 function (err, object) {
                     if (err) {
                         reject(err);

@@ -1,0 +1,3 @@
+
+export const START_LOGGING = "START_LOGGING";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";

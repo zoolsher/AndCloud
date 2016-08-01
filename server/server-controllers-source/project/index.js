@@ -11,7 +11,7 @@ import Promise from 'bluebird';
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '..', '..', 'uploads'));
+        cb(null, path.join(__dirname, '..', '..', '..', 'uploads'));
     },
     filename: function (req, file, cb) {
         cb(null, `${uuid.v4()}.${file.fieldname}`);
@@ -64,15 +64,25 @@ function routerConnectDB(db) {
 
         var userid = req.session.user._id;
         (new Project(db)).createProject(userid, req.body.name, apkList, {})
-        .then((dbRes)=>{
+        .then((dbRes)=>{//dbRes is the id of the project;
             res.send(JSON.stringify(dbRes));
             Promise.all(apkList.map($=>{
                 return (new aapt()).analize($.path);
             })).then(function(results){
-                (new Project(db)).updateDetail(dbRes,{});
+                var newApkList = apkList.map((apk,index)=>{
+                    apk.detail=results[index];
+                    return apk;
+                });
+                return (new Project(db)).updateApkList(dbRes,newApkList);
+            }).catch((err)=>{
+                var newApkList = apkList.map((apk,index)=>{
+                    apk.detail=err;
+                    return apk;
+                });
+                return (new Project(db)).updateApkList(dbRes,newApkList);
+            }).then(res=>{
+                console.log(res);
                 return null;
-            }).error((err)=>{
-                (new Project(db)).updateDetail(dbRes,apk,{"analize":"failed"});
             });
             return null;
         })

@@ -1,6 +1,6 @@
 import Aapt from './../index.js';
 
-const filename = '/Users/zoolsher/Downloads/stf-master/vendor/STFService/STFService.apk';
+const filename = '/Users/zoolsher/Downloads/smartisan_reader_v1.2.0.apk';
 var aapt = new Aapt();
 aapt.analize(filename).then(
     (res)=>{

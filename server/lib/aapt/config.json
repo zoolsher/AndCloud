@@ -1,5 +1,5 @@
 {
-    "MACOS":"./macos/aapt",
+    "MACOS":"/macos/aapt",
     "LINUX":"",
     "WIN32":""
 }
