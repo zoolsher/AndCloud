@@ -5,6 +5,7 @@ var configData = require('./config');
 var app = express();
 const MongoStore = require('connect-mongo')(session);
 var MongoClient = require('mongodb').MongoClient;
+var logger = require('./server/lib/Logger');
 var db;
 
 
@@ -39,8 +40,10 @@ app.use('/touch', express.static(path.join(__dirname, 'node_modules', 'amazeui-t
 
 MongoClient.connect(configData.db.db_url, function (err, database) {
     if (err) {
+        logger.err("connect to mongodb err is %j", { err: err });
         throw err;
     }
+    logger.info("connect to mongodb success");
     db = database;
 
     app.use(function (req, res, next) {
@@ -65,8 +68,8 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
         res.sendFile(path.join(__dirname, 'login.html'));
     });
 
-    app.get('/report/*',function(req,res){
-        res.sendFile(path.join(__dirname,'report.html'));
+    app.get('/report/*', function (req, res) {
+        res.sendFile(path.join(__dirname, 'report.html'));
     })
 
     app.get('*', function (req, res) {
@@ -75,10 +78,10 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
     });
     app.listen(configData.server.PORT, configData.server.IP, function (err) {
         if (err) {
-            console.log(err);
+            logger.error("listen error is %j", { err: err });
             return;
         }
 
-        console.log(`Listening at http://${configData.server.IP}:${configData.server.PORT}`);
+        logger.info(`Listening at http://${configData.server.IP}:${configData.server.PORT}`);
     });
 });

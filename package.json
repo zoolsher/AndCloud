@@ -18,6 +18,7 @@
   "author": "zoolsher",
   "license": "MIT",
   "dependencies": {
+    "adm-zip": "^0.4.7",
     "amazeui-touch": "^1.0.0-beta.4",
     "babel-core": "^6.5.2",
     "babel-eslint": "^5.0.0",
@@ -60,7 +61,8 @@
     "uuid": "^2.0.2",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.7.1"
+    "webpack-hot-middleware": "^2.7.1",
+    "winston": "^2.2.0"
   },
   "devDependencies": {
     "amazeui-touch": "^1.0.0-beta.4",

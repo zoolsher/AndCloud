@@ -60,7 +60,7 @@ var Aapt = function () {
             var order = '' + __dirname + this.aaptPath + ' dump badging ' + apkAddress;
             return new _bluebird2.default(function (resolve, reject) {
                 _shelljs2.default.exec(order, function (code, stdout, stderr) {
-                    console.log(stdout);
+
                     if (stderr) {
                         reject(stderr);
                     } else {
