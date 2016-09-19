@@ -1,4 +1,4 @@
-import {START_LOGGING,LOGIN_SUCCESS} from './actionTypes';
+import {START_LOGGING,LOGIN_SUCCESS,LOGIN_FAILED} from './actionTypes';
 
 export function startLogging(username,password){
   return{
@@ -12,6 +12,12 @@ export function loginSuccess(){
   return {
     type: LOGIN_SUCCESS
   };
+}
+
+export function loginFailed(){
+  return{
+    type: LOGIN_FAILED
+  }
 }
 // /**
 //   Action Creators

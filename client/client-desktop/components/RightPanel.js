@@ -15,14 +15,12 @@ const RightPanel = React.createClass({
 					{project.name}
 					<a href="/report/0" className="am-btn am-btn-default" >查看报告</a>
 					<hr/>
-					{project.apkList.map(($,_) => {
-						return (
-							<div key={_}>
-								<AppInfo  app={$}/>
-								<hr/>
-							</div>
-						)
-					}) }
+					
+					<div>
+						<AppInfo app={project.apk}/>
+						<hr />
+					</div>
+					
 					
 					<Action>
 					</Action>

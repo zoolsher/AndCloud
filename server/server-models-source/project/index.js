@@ -7,16 +7,12 @@ class projectConnectDB {
     constructor(db) {
         this.db = db;
     }
-    createProject(userid, name, apkList, detail) {
+    createProject(userid, name, apk, detail) {
         return new Promise((resolve, reject) => {
             this.db.collection(collectionName).insertOne({
                 userid: userid,
                 name: name,
-                apkList: apkList.map((obj) => {
-                    var temp = Object.assign({}, obj);
-                    temp.detail = {};
-                    return temp;
-                }),
+                apk: apk,
                 createTime: Date.now()
             },
                 function (err, res) {
@@ -52,11 +48,11 @@ class projectConnectDB {
             })
         });
     }
-    updateApkList(id, apkList) {
+    updateApk(id, apk) {
         return new Promise((resolve, reject) => {
             var cursor = this.db.collection(collectionName).updateOne(
                 { _id: new ObjectId(id) },
-                { $set: { apkList: apkList } },
+                { $set: { apk: apk } },
                 function (err, object) {
                     if (err) {
                         reject(err);

@@ -31,6 +31,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var express = require('express');
 var router = express.Router();
 
+var mqSock = require('./../../../mq');
+
 var storage = _multer2.default.diskStorage({
     destination: function destination(req, file, cb) {
         cb(null, _path2.default.join(__dirname, '..', '..', '..', 'uploads'));
@@ -53,11 +55,7 @@ function routerConnectDB(db) {
         var userid = req.session.user._id;
         new _index2.default(db).getProjectList(userid).then(function (projs) {
             var temp = projs.map(function ($) {
-                $.apkList = $.apkList.map(function (_) {
-                    return _extends({}, _, {
-                        path: undefined
-                    });
-                });
+                $.apk = _extends({}, $.apk, { path: undefined });
                 return $;
             });
             res.send(JSON.stringify(temp));
@@ -67,39 +65,40 @@ function routerConnectDB(db) {
         });
     });
 
-    var cpUploads = upload.array('apk', 10);
+    var cpUploads = upload.single('apk');
     router.post('/createProject', cpUploads, function (req, res) {
-
-        var apkList = req.files.map(function ($) {
-            return {
-                originalName: $.originalname,
-                path: $.path,
-                filename: $.filename
-            };
-        });
+        // console.log(req);
+        // console.log(req.files);
+        var apk = req.file;
+        // var apkList = req.files.map($ => {
+        //     return {
+        //         originalName: $.originalname,
+        //         path: $.path,
+        //         filename: $.filename
+        //     }
+        // });
 
         var userid = req.session.user._id;
-        new _index2.default(db).createProject(userid, req.body.name, apkList, {}).then(function (dbRes) {
+        new _index2.default(db).createProject(userid, req.body.name, apk, {}).then(function (dbRes) {
             //dbRes is the id of the project;
             res.send(JSON.stringify(dbRes));
-            _bluebird2.default.all(apkList.map(function ($) {
-                return new _aapt2.default().analize($.path);
-            })).then(function (results) {
-                var newApkList = apkList.map(function (apk, index) {
-                    apk.detail = results[index];
-                    return apk;
-                });
-                return new _index2.default(db).updateApkList(dbRes, newApkList);
-            }).catch(function (err) {
-                var newApkList = apkList.map(function (apk, index) {
-                    apk.detail = err;
-                    return apk;
-                });
-                return new _index2.default(db).updateApkList(dbRes, newApkList);
-            }).then(function (res) {
-                console.log(res);
-                return null;
+            console.log(mqSock);
+            mqSock.send(JSON.stringify({
+                TAG: "NEWPROJECT",
+                id: dbRes
+            }));
+            new _aapt2.default().analize(apk.path).then(function (result) {
+                console.log(result);
+                var newApk = apk;
+                newApk.detail = result;
+                new _index2.default(db).updateApk(dbRes, newApk);
+            }).error(function (err) {
+                console.log(error);
+                var newApk = apk;
+                newApk.detail = result;
+                new _index2.default(db).updateApk(dbRes, newApk);
             });
+
             return null;
         }).error(function (err) {
             res.send(JSON.stringify("FAILED"));

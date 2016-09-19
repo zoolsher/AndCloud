@@ -2,6 +2,8 @@
 var express = require('express');
 var router = express.Router();
 
+var mqSock = require('./../../../mq');
+
 import Project from './../../server-models/project/index';
 import multer from 'multer';
 import path from 'path';
@@ -33,12 +35,7 @@ function routerConnectDB(db) {
         .then(
             (projs)=>{
                 var temp = projs.map($=>{
-                    $.apkList = $.apkList.map(_=>{
-                        return {
-                            ..._,
-                            path:undefined
-                        }
-                    })
+                    $.apk = {...$.apk,path:undefined};
                     return $;
                 });
                 res.send(JSON.stringify(temp));
@@ -51,39 +48,43 @@ function routerConnectDB(db) {
         
     });
 
-    var cpUploads = upload.array('apk', 10);
+    var cpUploads = upload.single('apk');
     router.post('/createProject', cpUploads, function (req, res) {
+        // console.log(req);
+        // console.log(req.files);
+        var apk = req.file;
+        // var apkList = req.files.map($ => {
+        //     return {
+        //         originalName: $.originalname,
+        //         path: $.path,
+        //         filename: $.filename
+        //     }
+        // });
 
-        var apkList = req.files.map($ => {
-            return {
-                originalName: $.originalname,
-                path: $.path,
-                filename: $.filename
-            }
-        });
 
         var userid = req.session.user._id;
-        (new Project(db)).createProject(userid, req.body.name, apkList, {})
+        (new Project(db)).createProject(userid, req.body.name, apk, {})
         .then((dbRes)=>{//dbRes is the id of the project;
             res.send(JSON.stringify(dbRes));
-            Promise.all(apkList.map($=>{
-                return (new aapt()).analize($.path);
-            })).then(function(results){
-                var newApkList = apkList.map((apk,index)=>{
-                    apk.detail=results[index];
-                    return apk;
-                });
-                return (new Project(db)).updateApkList(dbRes,newApkList);
-            }).catch((err)=>{
-                var newApkList = apkList.map((apk,index)=>{
-                    apk.detail=err;
-                    return apk;
-                });
-                return (new Project(db)).updateApkList(dbRes,newApkList);
-            }).then(res=>{
-                console.log(res);
-                return null;
-            });
+            console.log(mqSock);
+            mqSock.send(JSON.stringify({
+                TAG:"NEWPROJECT",
+                id:dbRes
+            }));
+            (new aapt()).analize(apk.path)
+            .then(result => {
+                console.log(result)
+                var newApk = apk;
+                newApk.detail = result;
+                (new Project(db)).updateApk(dbRes,newApk);
+            })
+            .error(err => {
+                console.log(error);
+                var newApk = apk;
+                newApk.detail = result;
+                (new Project(db)).updateApk(dbRes,newApk);
+            })
+
             return null;
         })
         .error((err)=>{

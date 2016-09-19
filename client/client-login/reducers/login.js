@@ -1,4 +1,4 @@
-import { START_LOGGING,LOGIN_SUCCESS } from './../actions/actionTypes';
+import { START_LOGGING,LOGIN_SUCCESS,LOGIN_FAILED } from './../actions/actionTypes';
 
 function login (state = {}, action){
     switch (action.type) {
@@ -16,6 +16,13 @@ function login (state = {}, action){
                 password:state.password
             }
             return newstate;
+        case LOGIN_FAILED:
+            var newState = {
+                state:"LOGIN_FAILED",
+                username:state.username,
+                password:state.password
+            }
+            return newState
         default:
             return state;
     }

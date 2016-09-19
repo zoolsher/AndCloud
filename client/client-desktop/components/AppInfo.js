@@ -1,5 +1,5 @@
 import React from 'react';
-
+import JSONTree from 'leonaves-react-json-tree';
 var AppInfo = React.createClass({
 	getDateDiff(dateTimeStamp) {
 		var minute = 1000 * 60;
@@ -38,6 +38,7 @@ var AppInfo = React.createClass({
 	},
 	render() {
 		var app = this.props.app;
+		var apk = app.apk;
 		return (
 			<div className="am-g am-container">
 
@@ -45,7 +46,7 @@ var AppInfo = React.createClass({
 
 				<div className="am-u-md-10 am-u-sm-10">
 					<div>
-						应用名称：<code>{app['originalName'] || "未分析完成呢"}</code>
+						应用名称：<code>{app['originalname'] || "未分析完成呢"}</code>
 					</div>
 					<div>
 						版本号：<code>{app['version'] || "未分析完成呢"}</code>
@@ -56,9 +57,7 @@ var AppInfo = React.createClass({
 					<div>
 						上传时间: <code>{ this.getDateDiff(app['createTime']) }</code>
 					</div>
-					<pre>
-						{JSON.stringify(app)}
-					</pre>
+					<JSONTree data={app.detail}  hideRoot={false} expandAll={false}></JSONTree>	
 				</div>
 			</div>
 		);

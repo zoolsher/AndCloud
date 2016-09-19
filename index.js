@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo')(session);
 var MongoClient = require('mongodb').MongoClient;
 var logger = require('./server/lib/Logger');
 var db;
+var mq = require('./mq');
 
 
 if (process.env.NODE_ENV === "production") {

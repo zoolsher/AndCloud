@@ -1,3 +1,4 @@
 
 export const START_LOGGING = "START_LOGGING";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN_FAILED";

@@ -18,6 +18,7 @@ var Login = React.createClass({
 				window.location.pathname = '/';
 			} else {
 				// this.props.login
+				comp.props.loginFailed();
 			}
 		}).error(function () {
 
@@ -42,6 +43,7 @@ var Login = React.createClass({
 	},
 	render() {
 		var btnname = '';
+		var btnClass = "am-btn-primary";
 		switch (this.props.login.state) {
 			case 'NOT_LOGIN':
 				btnname = "确认";
@@ -50,8 +52,12 @@ var Login = React.createClass({
 				btnname = '正在登陆';
 				break;
 			case 'LOGIN_SUCCESS':
+				btnClass = "am-btn-success"
 				btnname = "登录成功";
 				break;
+			case 'LOGIN_FAILED':
+				btnClass = "am-btn-warning";
+				btnname = "登录失败";
 			default: break;
 
 		}
@@ -75,7 +81,7 @@ var Login = React.createClass({
 									<input type="password" className="am-form-field form-input" placeholder="Password" ref='password'/>
 								</div>
 
-								<button type="button" className="am-btn am-btn-primary am-radius form-btn" onClick={this.submitInfo}>
+								<button type="button" className={"am-btn am-btn-primary am-radius form-btn "+btnClass} onClick={this.submitInfo}>
 									{btnname}
 								</button>
 							</div>

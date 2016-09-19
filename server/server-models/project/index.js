@@ -26,18 +26,14 @@ var projectConnectDB = function () {
 
     _createClass(projectConnectDB, [{
         key: 'createProject',
-        value: function createProject(userid, name, apkList, detail) {
+        value: function createProject(userid, name, apk, detail) {
             var _this = this;
 
             return new _bluebird2.default(function (resolve, reject) {
                 _this.db.collection(collectionName).insertOne({
                     userid: userid,
                     name: name,
-                    apkList: apkList.map(function (obj) {
-                        var temp = Object.assign({}, obj);
-                        temp.detail = {};
-                        return temp;
-                    }),
+                    apk: apk,
                     createTime: Date.now()
                 }, function (err, res) {
                     if (err) {
@@ -77,12 +73,12 @@ var projectConnectDB = function () {
             });
         }
     }, {
-        key: 'updateApkList',
-        value: function updateApkList(id, apkList) {
+        key: 'updateApk',
+        value: function updateApk(id, apk) {
             var _this3 = this;
 
             return new _bluebird2.default(function (resolve, reject) {
-                var cursor = _this3.db.collection(collectionName).updateOne({ _id: new ObjectId(id) }, { $set: { apkList: apkList } }, function (err, object) {
+                var cursor = _this3.db.collection(collectionName).updateOne({ _id: new ObjectId(id) }, { $set: { apk: apk } }, function (err, object) {
                     if (err) {
                         reject(err);
                     } else {
