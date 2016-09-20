@@ -39,6 +39,7 @@ var Aapt = function () {
         key: 'osJudge',
         value: function osJudge() {
             var curos = _os2.default.platform();
+		console.log(curos);
             switch (curos) {
                 case "darwin":
                     //use the mac one
@@ -50,7 +51,8 @@ var Aapt = function () {
                     break;
                 case "linux":
                     //use linux
-                    this.apptPath = _config2.default['LINUX'];
+			console.log(_config2.default);
+                    this.aaptPath = _config2.default['LINUX'];
                     break;
             }
         }
