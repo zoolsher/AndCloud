@@ -39,7 +39,6 @@ var Aapt = function () {
         key: 'osJudge',
         value: function osJudge() {
             var curos = _os2.default.platform();
-		console.log(curos);
             switch (curos) {
                 case "darwin":
                     //use the mac one
@@ -51,7 +50,6 @@ var Aapt = function () {
                     break;
                 case "linux":
                     //use linux
-			console.log(_config2.default);
                     this.aaptPath = _config2.default['LINUX'];
                     break;
             }
@@ -62,7 +60,7 @@ var Aapt = function () {
             var order = '' + __dirname + this.aaptPath + ' dump badging ' + apkAddress;
             return new _bluebird2.default(function (resolve, reject) {
                 _shelljs2.default.exec(order, function (code, stdout, stderr) {
-
+                    console.log(stdout);
                     if (stderr) {
                         reject(stderr);
                     } else {

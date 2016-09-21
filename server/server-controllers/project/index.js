@@ -26,6 +26,10 @@ var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
+var _Logger = require('./../../lib/Logger');
+
+var _Logger2 = _interopRequireDefault(_Logger);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var express = require('express');
@@ -78,26 +82,26 @@ function routerConnectDB(db) {
         //     }
         // });
 
-
         var userid = req.session.user._id;
         new _index2.default(db).createProject(userid, req.body.name, apk, {}).then(function (dbRes) {
             //dbRes is the id of the project;
             res.send(JSON.stringify(dbRes));
-            console.log(mqSock);
             mqSock.send(JSON.stringify({
                 TAG: "NEWPROJECT",
                 id: dbRes
             }));
             new _aapt2.default().analize(apk.path).then(function (result) {
-                console.log(result);
+                _Logger2.default.log(result);
                 var newApk = apk;
                 newApk.detail = result;
-                new _index2.default(db).updateApk(dbRes, newApk);
+                return new _index2.default(db).updateApk(dbRes, newApk);
             }).error(function (err) {
-                console.log(error);
+                _Logger2.default.err(err);
                 var newApk = apk;
                 newApk.detail = result;
-                new _index2.default(db).updateApk(dbRes, newApk);
+                return new _index2.default(db).updateApk(dbRes, newApk);
+            }).error(function (err) {
+                _Logger2.default.err(err);
             });
 
             return null;

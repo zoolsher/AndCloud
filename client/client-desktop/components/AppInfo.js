@@ -41,9 +41,7 @@ var AppInfo = React.createClass({
 		var apk = app.apk;
 		return (
 			<div className="am-g am-container">
-
 				<img src={app['icon'] || "/public/image/apk-default.gif"} alt="" className="am-img-thumbnail am-u-md-2 am-u-sm-2 zo-box-shadow" />
-
 				<div className="am-u-md-10 am-u-sm-10">
 					<div>
 						应用名称：<code>{app['originalname'] || "未分析完成呢"}</code>

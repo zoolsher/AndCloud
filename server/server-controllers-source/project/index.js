@@ -10,6 +10,7 @@ import path from 'path';
 import uuid from 'uuid';
 import aapt from './../../lib/aapt';
 import Promise from 'bluebird';
+import logger from './../../lib/Logger';
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -66,23 +67,25 @@ function routerConnectDB(db) {
         (new Project(db)).createProject(userid, req.body.name, apk, {})
         .then((dbRes)=>{//dbRes is the id of the project;
             res.send(JSON.stringify(dbRes));
-            console.log(mqSock);
             mqSock.send(JSON.stringify({
                 TAG:"NEWPROJECT",
                 id:dbRes
             }));
             (new aapt()).analize(apk.path)
             .then(result => {
-                console.log(result)
+                logger.log(result);
                 var newApk = apk;
                 newApk.detail = result;
-                (new Project(db)).updateApk(dbRes,newApk);
+                return (new Project(db)).updateApk(dbRes,newApk);
             })
             .error(err => {
-                console.log(error);
+                logger.err(err);
                 var newApk = apk;
                 newApk.detail = result;
-                (new Project(db)).updateApk(dbRes,newApk);
+                return (new Project(db)).updateApk(dbRes,newApk);
+            })
+            .error(err => {
+                logger.err(err);
             })
 
             return null;

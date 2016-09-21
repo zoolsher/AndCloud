@@ -34,11 +34,20 @@ app.use(session({
     }),
     cookie: { maxAge: 24 * 60 * 60 * 1000 }// last a day long
 }));
-
+/**
+ * static router
+ * public-router
+ */
 app.use('/public', express.static(path.join(__dirname, 'public')));
+/**
+ * static router
+ * amazeui-touch
+ */
 app.use('/touch', express.static(path.join(__dirname, 'node_modules', 'amazeui-touch', 'dist')));
 
-
+/**
+ * start the MongoClient DB_URL 
+ */
 MongoClient.connect(configData.db.db_url, function (err, database) {
     if (err) {
         logger.err("connect to mongodb err is %j", { err: err });
@@ -47,8 +56,15 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
     logger.info("connect to mongodb success");
     db = database;
 
+    var pathStartsWithList = [
+        '/user/login',
+        '/s/user',
+    ];
     app.use(function (req, res, next) {
-        if (req.session.isLogin === true || req.path.startsWith('/user/login') || req.path.startsWith('/s/user')) {
+        var inAllowList = pathStartsWithList.reduce((lastRes,curPath)=>{
+            return req.path.startsWith(curPath) || lastRes;
+        })
+        if (req.session.isLogin === true || inAllowList) {
             next();
         } else {
             res.redirect('/user/login');
