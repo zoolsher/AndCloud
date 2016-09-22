@@ -43,7 +43,7 @@ function User(db) {
                 var cur = db.collection('users').insertOne({
                     name: name,
                     pass: passwordHash(pass),
-                    project: []
+                    // project: []
                 }, function (err, result) {
                     if (err) throw err;
                     ret.result = result;

@@ -9,6 +9,21 @@ var logger = require('./server/lib/Logger');
 var db;
 var mq = require('./mq');
 
+function isObject(o){
+    Object.prototype.toString.call(o) == "[object Object]"
+}
+
+function configRouters(list,app,db){
+    if(!isObject(list)){
+        return;
+    }
+    for(var key in list){
+        var value = list[key];
+        var router = value(db);
+        app.use(key,router);
+    }
+    return;
+}
 
 if (process.env.NODE_ENV === "production") {
     app.use('/static', express.static(path.join(__dirname, 'dist')));
@@ -71,11 +86,12 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
         }
     });
 
-    var userRouter = require('./server/server-controllers/user/index')(db);
-    app.use('/s/user', userRouter);
+    var configTable = {
+        '/s/user':require('./server/server-controllers/user/index'),
+        '/s/project':require('./server/server-controllers/project/index'),
+    }
 
-    var projectRouter = require('./server/server-controllers/project/index')(db);
-    app.use('/s/project', projectRouter);
+    configRouters(configTable,app,db);
 
     app.get('/m/*', function (req, res) {
         res.sendFile(path.join(__dirname, 'index-mobile.html'));
@@ -102,3 +118,5 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
         logger.info(`Listening at http://${configData.server.IP}:${configData.server.PORT}`);
     });
 });
+
+
