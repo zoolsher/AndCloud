@@ -2,6 +2,8 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _actionnames = require('./../../lib/actionnames');
+
 var _index = require('./../../server-models/project/index');
 
 var _index2 = _interopRequireDefault(_index);
@@ -87,8 +89,10 @@ function routerConnectDB(db) {
             //dbRes is the id of the project;
             res.send(JSON.stringify(dbRes));
             mqSock.send(JSON.stringify({
-                TAG: "NEWPROJECT",
-                id: dbRes
+                type: _actionnames.CREATED_A_NEW_PROJECT,
+                params: {
+                    id: dbRes
+                }
             }));
             new _aapt2.default().analize(apk.path).then(function (result) {
                 _Logger2.default.log(result);

@@ -1,4 +1,4 @@
-
+import {CREATED_A_NEW_PROJECT} from './../../lib/actionnames';
 var express = require('express');
 var router = express.Router();
 
@@ -68,8 +68,10 @@ function routerConnectDB(db) {
         .then((dbRes)=>{//dbRes is the id of the project;
             res.send(JSON.stringify(dbRes));
             mqSock.send(JSON.stringify({
-                TAG:"NEWPROJECT",
-                id:dbRes
+                type:CREATED_A_NEW_PROJECT,
+                params:{
+                    id:dbRes
+                }
             }));
             (new aapt()).analize(apk.path)
             .then(result => {

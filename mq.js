@@ -1,5 +1,5 @@
 var configData = require('./config');
-// start bindSync the message quene
+// start bindSync the message queen
 var zmq = require("zmq");
 var logger = require("./server/lib/Logger");
 var sock = zmq.socket("push");

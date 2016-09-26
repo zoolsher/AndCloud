@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
 
 
-const defaultState: object = {
+const defaultState = {
     // posts:posts,
     // comments:comments,
     // td:td,

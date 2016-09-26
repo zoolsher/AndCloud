@@ -10,7 +10,7 @@ var db;
 var mq = require('./mq');
 
 function isObject(o){
-    Object.prototype.toString.call(o) == "[object Object]"
+    return Object.prototype.toString.call(o) == "[object Object]"
 }
 
 function configRouters(list,app,db){
@@ -18,6 +18,7 @@ function configRouters(list,app,db){
         return;
     }
     for(var key in list){
+        console.log(key);
         var value = list[key];
         var router = value(db);
         app.use(key,router);
@@ -106,7 +107,6 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
     })
 
     app.get('*', function (req, res) {
-
         res.sendFile(path.join(__dirname, 'index.html'));
     });
     app.listen(configData.server.PORT, configData.server.IP, function (err) {

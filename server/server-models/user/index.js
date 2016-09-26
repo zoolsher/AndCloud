@@ -44,9 +44,9 @@ function User(db) {
             } else {
                 var cur = db.collection('users').insertOne({
                     name: name,
-                    pass: passwordHash(pass),
-                    project: []
-                }, function (err, result) {
+                    pass: passwordHash(pass)
+                }, // project: []
+                function (err, result) {
                     if (err) throw err;
                     ret.result = result;
                     ret.state.status = "success";
