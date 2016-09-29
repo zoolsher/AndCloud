@@ -20,10 +20,6 @@ var _uuid = require('uuid');
 
 var _uuid2 = _interopRequireDefault(_uuid);
 
-var _aapt = require('./../../lib/aapt');
-
-var _aapt2 = _interopRequireDefault(_aapt);
-
 var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
@@ -38,6 +34,8 @@ var express = require('express');
 var router = express.Router();
 
 var mqSock = require('./../../../mq');
+// import aapt from './../../lib/aapt';
+
 
 var storage = _multer2.default.diskStorage({
     destination: function destination(req, file, cb) {
@@ -84,6 +82,7 @@ function routerConnectDB(db) {
         //     }
         // });
 
+
         var userid = req.session.user._id;
         new _index2.default(db).createProject(userid, req.body.name, apk, {}).then(function (dbRes) {
             //dbRes is the id of the project;
@@ -94,19 +93,22 @@ function routerConnectDB(db) {
                     id: dbRes
                 }
             }));
-            new _aapt2.default().analize(apk.path).then(function (result) {
-                _Logger2.default.log(result);
-                var newApk = apk;
-                newApk.detail = result;
-                return new _index2.default(db).updateApk(dbRes, newApk);
-            }).error(function (err) {
-                _Logger2.default.err(err);
-                var newApk = apk;
-                newApk.detail = result;
-                return new _index2.default(db).updateApk(dbRes, newApk);
-            }).error(function (err) {
-                _Logger2.default.err(err);
-            });
+            // (new aapt()).analize(apk.path)
+            // .then(result => {
+            //     logger.log(result);
+            //     var newApk = apk;
+            //     newApk.detail = result;
+            //     return (new Project(db)).updateApk(dbRes,newApk);
+            // })
+            // .error(err => {
+            //     logger.err(err);
+            //     var newApk = apk;
+            //     newApk.detail = result;
+            //     return (new Project(db)).updateApk(dbRes,newApk);
+            // })
+            // .error(err => {
+            //     logger.err(err);
+            // })
 
             return null;
         }).error(function (err) {

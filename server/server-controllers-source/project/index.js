@@ -8,7 +8,6 @@ import Project from './../../server-models/project/index';
 import multer from 'multer';
 import path from 'path';
 import uuid from 'uuid';
-import aapt from './../../lib/aapt';
 import Promise from 'bluebird';
 import logger from './../../lib/Logger';
 
@@ -73,22 +72,7 @@ function routerConnectDB(db) {
                     id:dbRes
                 }
             }));
-            (new aapt()).analize(apk.path)
-            .then(result => {
-                logger.log(result);
-                var newApk = apk;
-                newApk.detail = result;
-                return (new Project(db)).updateApk(dbRes,newApk);
-            })
-            .error(err => {
-                logger.err(err);
-                var newApk = apk;
-                newApk.detail = result;
-                return (new Project(db)).updateApk(dbRes,newApk);
-            })
-            .error(err => {
-                logger.err(err);
-            })
+
 
             return null;
         })
