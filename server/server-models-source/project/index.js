@@ -7,6 +7,20 @@ class projectConnectDB {
     constructor(db) {
         this.db = db;
     }
+    getProject(id){
+        return new Promise((resolve,reject)=>{
+            this.db.collection(collectionName).findOne({
+                _id:new ObjectId(id)
+            },function(err,res){
+                if(err){
+                    reject(err);
+                }else{
+                    console.log(res);
+                    resolve(res);
+                }
+            })
+        });
+    }
     createProject(userid, name, apk, detail) {
         return new Promise((resolve, reject) => {
             this.db.collection(collectionName).insertOne({

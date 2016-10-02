@@ -25,9 +25,17 @@ var upload = multer({ storage: storage });
 function routerConnectDB(db) {
     router.get('/projectDetail', function (req, res) {
         var id = req.query.id;
-        (new Project(db)).getProject(id, function (proj) {
-            res.send(JSON.stringify(proj));
-        });
+        console.log(id);
+        (new Project(db)).getProject(id)
+        .then(result=>{
+            res.send(JSON.stringify(result));
+            return null;
+        }).error(err=>{
+            res.send(JSON.stringify(err));
+        })
+        // , function (proj) {
+            // res.send(JSON.stringify(proj));
+        // });
     });
     router.get('/projectList', function (req, res) {
         var userid = req.session.user._id;

@@ -25,12 +25,30 @@ var projectConnectDB = function () {
     }
 
     _createClass(projectConnectDB, [{
-        key: 'createProject',
-        value: function createProject(userid, name, apk, detail) {
+        key: 'getProject',
+        value: function getProject(id) {
             var _this = this;
 
             return new _bluebird2.default(function (resolve, reject) {
-                _this.db.collection(collectionName).insertOne({
+                _this.db.collection(collectionName).findOne({
+                    _id: new ObjectId(id)
+                }, function (err, res) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        console.log(res);
+                        resolve(res);
+                    }
+                });
+            });
+        }
+    }, {
+        key: 'createProject',
+        value: function createProject(userid, name, apk, detail) {
+            var _this2 = this;
+
+            return new _bluebird2.default(function (resolve, reject) {
+                _this2.db.collection(collectionName).insertOne({
                     userid: userid,
                     name: name,
                     apk: apk,
@@ -51,10 +69,10 @@ var projectConnectDB = function () {
     }, {
         key: 'getProjectList',
         value: function getProjectList(userid) {
-            var _this2 = this;
+            var _this3 = this;
 
             return new _bluebird2.default(function (resolve, reject) {
-                var cursor = _this2.db.collection(collectionName).find({
+                var cursor = _this3.db.collection(collectionName).find({
                     userid: userid
                 }).sort({
                     createTime: -1
@@ -75,10 +93,10 @@ var projectConnectDB = function () {
     }, {
         key: 'updateApk',
         value: function updateApk(id, apk) {
-            var _this3 = this;
+            var _this4 = this;
 
             return new _bluebird2.default(function (resolve, reject) {
-                var cursor = _this3.db.collection(collectionName).updateOne({ _id: new ObjectId(id) }, { $set: { apk: apk } }, function (err, object) {
+                var cursor = _this4.db.collection(collectionName).updateOne({ _id: new ObjectId(id) }, { $set: { apk: apk } }, function (err, object) {
                     if (err) {
                         reject(err);
                     } else {

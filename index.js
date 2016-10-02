@@ -9,19 +9,19 @@ var logger = require('./server/lib/Logger');
 var db;
 var mq = require('./mq');
 
-function isObject(o){
+function isObject(o) {
     return Object.prototype.toString.call(o) == "[object Object]"
 }
 
-function configRouters(list,app,db){
-    if(!isObject(list)){
+function configRouters(list, app, db) {
+    if (!isObject(list)) {
         return;
     }
-    for(var key in list){
+    for (var key in list) {
         console.log(key);
         var value = list[key];
         var router = value(db);
-        app.use(key,router);
+        app.use(key, router);
     }
     return;
 }
@@ -77,10 +77,10 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
         '/s/user',
     ];
     app.use(function (req, res, next) {
-        var inAllowList = pathStartsWithList.reduce((lastRes,curPath)=>{
+        var inAllowList = pathStartsWithList.reduce((lastRes, curPath) => {
             return req.path.startsWith(curPath) || lastRes;
         })
-        if (req.session.isLogin === true || inAllowList) {
+        if ((req.session.user !== undefined && req.session.isLogin === true) || inAllowList) {
             next();
         } else {
             res.redirect('/user/login');
@@ -88,11 +88,11 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
     });
 
     var configTable = {
-        '/s/user':require('./server/server-controllers/user/index'),
-        '/s/project':require('./server/server-controllers/project/index'),
+        '/s/user': require('./server/server-controllers/user/index'),
+        '/s/project': require('./server/server-controllers/project/index'),
     }
 
-    configRouters(configTable,app,db);
+    configRouters(configTable, app, db);
 
     app.get('/m/*', function (req, res) {
         res.sendFile(path.join(__dirname, 'index-mobile.html'));

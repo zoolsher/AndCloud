@@ -34,8 +34,6 @@ var express = require('express');
 var router = express.Router();
 
 var mqSock = require('./../../../mq');
-// import aapt from './../../lib/aapt';
-
 
 var storage = _multer2.default.diskStorage({
     destination: function destination(req, file, cb) {
@@ -51,9 +49,16 @@ var upload = (0, _multer2.default)({ storage: storage });
 function routerConnectDB(db) {
     router.get('/projectDetail', function (req, res) {
         var id = req.query.id;
-        new _index2.default(db).getProject(id, function (proj) {
-            res.send(JSON.stringify(proj));
+        console.log(id);
+        new _index2.default(db).getProject(id).then(function (result) {
+            res.send(JSON.stringify(result));
+            return null;
+        }).error(function (err) {
+            res.send(JSON.stringify(err));
         });
+        // , function (proj) {
+        // res.send(JSON.stringify(proj));
+        // });
     });
     router.get('/projectList', function (req, res) {
         var userid = req.session.user._id;
@@ -93,22 +98,6 @@ function routerConnectDB(db) {
                     id: dbRes
                 }
             }));
-            // (new aapt()).analize(apk.path)
-            // .then(result => {
-            //     logger.log(result);
-            //     var newApk = apk;
-            //     newApk.detail = result;
-            //     return (new Project(db)).updateApk(dbRes,newApk);
-            // })
-            // .error(err => {
-            //     logger.err(err);
-            //     var newApk = apk;
-            //     newApk.detail = result;
-            //     return (new Project(db)).updateApk(dbRes,newApk);
-            // })
-            // .error(err => {
-            //     logger.err(err);
-            // })
 
             return null;
         }).error(function (err) {
