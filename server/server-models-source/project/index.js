@@ -9,6 +9,9 @@ class projectConnectDB {
     }
     getProject(id){
         return new Promise((resolve,reject)=>{
+            if(!id){
+                reject(new Error("_id is not vaild"));
+            }
             this.db.collection(collectionName).findOne({
                 _id:new ObjectId(id)
             },function(err,res){

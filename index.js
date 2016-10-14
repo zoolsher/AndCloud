@@ -90,6 +90,7 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
     var configTable = {
         '/s/user': require('./server/server-controllers/user/index'),
         '/s/project': require('./server/server-controllers/project/index'),
+        '/s/log': require('./server/server-controllers/log/index')
     }
 
     configRouters(configTable, app, db);
@@ -104,6 +105,10 @@ MongoClient.connect(configData.db.db_url, function (err, database) {
 
     app.get('/report/*', function (req, res) {
         res.sendFile(path.join(__dirname, 'report.html'));
+    })
+
+    app.get('/admin*', function (req, res) {
+        res.sendFile(path.join(__dirname, 'index-admin.html'));
     })
 
     app.get('*', function (req, res) {

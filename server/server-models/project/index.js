@@ -30,6 +30,9 @@ var projectConnectDB = function () {
             var _this = this;
 
             return new _bluebird2.default(function (resolve, reject) {
+                if (!id) {
+                    reject(new Error("_id is not vaild"));
+                }
                 _this.db.collection(collectionName).findOne({
                     _id: new ObjectId(id)
                 }, function (err, res) {

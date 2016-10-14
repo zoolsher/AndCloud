@@ -3,17 +3,20 @@ var webpack = require('webpack');
 console.log('using production');
 module.exports = {
   entry: {
-    desktop:[
-        './client/client-desktop/index'
+    desktop: [
+      './client/client-desktop/index'
     ],
-    mobile:[
-        './client/client-mobile/index'
+    mobile: [
+      './client/client-mobile/index'
     ],
-    login:[
-        './client/client-login/index'
+    login: [
+      './client/client-login/index'
     ],
-    report:[
-        './client/client-report/index'
+    report: [
+      './client/client-report/index'
+    ],
+    admin: [
+      './client/client-admin/index'
     ]
   },
   output: {
@@ -26,7 +29,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': "'production'",
-        'BABEL_ENV':"'production'"
+        'BABEL_ENV': "'production'"
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
@@ -37,18 +40,18 @@ module.exports = {
   ],
   module: {
     loaders: [
-    // js
-    {
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'client')
-    },
-    // CSS
-    {
-      test: /\.styl$/,
-      include: path.join(__dirname, 'client'),
-      loader: 'style-loader!css-loader!stylus-loader'
-    }
+      // js
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'client')
+      },
+      // CSS
+      {
+        test: /\.styl$/,
+        include: path.join(__dirname, 'client'),
+        loader: 'style-loader!css-loader!stylus-loader'
+      }
     ]
   }
 };
